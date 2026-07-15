@@ -22,7 +22,9 @@ eval = [
   "torch>=2.2.0",
   "torchaudio>=2.2.0"
 ]
-tts = []
+tts = [
+  "piper-tts==1.4.2"
+]
 dev = [
   "pytest>=8.0.0"
 ]
@@ -32,4 +34,5 @@ bhasha = "bhasha.cli:main"
 
 [tool.setuptools.packages.find]
 include = ["bhasha*"]
+
 

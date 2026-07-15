@@ -4,3 +4,7 @@ __pycache__/
 .venv/
 .env
 .pytest_cache/
+
+models/piper/*.onnx
+models/piper/*.onnx.json
+

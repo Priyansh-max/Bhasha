@@ -13,10 +13,10 @@ The priority is the AI Engineer take-home assignment first. Bhasha should remain
 
 ## Milestone 2: First Real Audio
 
-- [ ] Choose first lightweight real TTS model for local or notebook testing.
-- [ ] Add first real TTS adapter.
-- [ ] Generate real audio samples.
-- [ ] Record install steps and model version.
+- [x] Choose first lightweight real TTS model for local or notebook testing.
+- [x] Add first real TTS adapter.
+- [x] Generate real audio samples.
+- [x] Record install steps and model version.
 
 ## Milestone 3: Objective Metrics
 
@@ -40,3 +40,4 @@ The priority is the AI Engineer take-home assignment first. Bhasha should remain
 - [ ] Pick winner per language with reasoning.
 - [ ] Document model versions, hardware, parameters, reproduction steps, and failure modes.
 - [ ] Package real audio samples and reference clips.
+

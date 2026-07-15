@@ -1,0 +1,46 @@
+﻿{
+  "suite_id": "piper_en_smoke",
+  "name": "Piper English smoke test",
+  "description": "First real TTS smoke suite using Piper as a CPU-friendly open-source baseline.",
+  "output_root": "outputs/runs",
+  "repeat_count": 1,
+  "languages": [
+    {
+      "id": "en",
+      "name": "English",
+      "script": "Latin",
+      "asr_language": "en"
+    }
+  ],
+  "models": [
+    {
+      "id": "piper_en_lessac_medium",
+      "name": "Piper en_US lessac medium",
+      "adapter": "piper_cli",
+      "enabled": true,
+      "supports_voice_cloning": false,
+      "license": "Piper engine GPL-3.0-or-later; voice license must be verified from downloaded model card before final report",
+      "source": "https://huggingface.co/rhasspy/piper-voices",
+      "languages": ["en"],
+      "parameters": {
+        "executable": "piper",
+        "model_path": "models/piper/en_US-lessac-medium.onnx",
+        "config_path": "models/piper/en_US-lessac-medium.onnx.json"
+      }
+    }
+  ],
+  "prompts": [
+    {
+      "id": "en_piper_001",
+      "language": "en",
+      "category": "simple",
+      "text": "This is the first real text to speech benchmark sample from Bhasha."
+    },
+    {
+      "id": "en_piper_002",
+      "language": "en",
+      "category": "numbers",
+      "text": "Please call room number 204 at 9:30 tomorrow morning."
+    }
+  ]
+}

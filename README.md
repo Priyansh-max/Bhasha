@@ -60,3 +60,24 @@ Development can happen locally. Heavy benchmark runs should happen on one fixed 
 4. Add speaker similarity for cloning-capable models.
 5. Add the English, Arabic, and Hindi take-home suite with real model candidates.
 
+
+## Piper Baseline
+
+Piper is the first real local TTS baseline. It is CPU-friendly and useful for validating Bhasha with actual generated speech before moving to heavyweight multilingual/cloning models.
+
+Setup:
+
+```bash
+python -m venv .venv
+.venv\Scripts\python -m pip install -r requirements/piper.txt
+.venv\Scripts\python scripts\download_piper_voice.py
+```
+
+Run:
+
+```bash
+$env:PATH = (Resolve-Path '.venv\Scripts').Path + ';' + $env:PATH
+.venv\Scripts\python -m bhasha run --suite configs\suites\piper_en_smoke.json
+```
+
+The current Piper adapter invokes the `piper` CLI per sample, so measured latency includes process/model startup. Later benchmark stages should separate cold-start timing from warm generation timing.
