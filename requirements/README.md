@@ -7,3 +7,5 @@ These files pin small, task-specific dependency sets instead of forcing every be
 Heavy model stacks such as XTTS, Fish Speech, CosyVoice, Whisper, and speaker-embedding models should get separate requirement files or environment notes so dependency conflicts stay visible.
 
 - `asr.txt`: optional faster-whisper backend for round-trip WER/CER evaluation.
+
+- `speaker.txt`: optional SpeechBrain speaker embedding backend for voice-cloning cosine similarity.

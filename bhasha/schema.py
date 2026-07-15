@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -32,6 +32,7 @@ class PromptConfig:
     language: str
     category: str
     text: str
+    reference_audio: str | None = None
 
 
 @dataclass(frozen=True)

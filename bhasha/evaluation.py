@@ -5,7 +5,9 @@ from pathlib import Path
 from typing import Any
 
 from .asr.faster_whisper_backend import FasterWhisperASR
-from .reporting import BENCHMARK_FIELDS, write_benchmark_csv, write_json
+from .reporting import write_benchmark_csv, write_json
+from .speaker.speechbrain_backend import SpeechBrainSpeakerEmbedding
+from .speaker_metrics import cosine_similarity
 from .text_metrics import character_error_rate, normalize_text, word_error_rate
 
 
@@ -83,3 +85,73 @@ def _resolve_audio_path(run_dir: Path, raw_path: str) -> Path:
 
     # Existing rows store paths relative to the project root, so cwd-relative is the common case.
     return path
+
+
+def evaluate_speaker_similarity(
+    run_dir: str | Path,
+    *,
+    model_source: str = "speechbrain/spkrec-ecapa-voxceleb",
+    savedir: str = "models/speaker/speechbrain-spkrec-ecapa-voxceleb",
+    device: str = "cpu",
+) -> Path:
+    run_path = Path(run_dir)
+    benchmark_path = run_path / "benchmark.csv"
+    if not benchmark_path.exists():
+        raise FileNotFoundError(f"Benchmark CSV not found: {benchmark_path}")
+
+    rows = _read_benchmark_csv(benchmark_path)
+    backend: SpeechBrainSpeakerEmbedding | None = None
+    backend_label = f"speechbrain:{model_source}:{device}"
+    similarities: list[dict[str, Any]] = []
+
+    for row in rows:
+        if row.get("status") != "success" or not row.get("output_audio"):
+            continue
+        if row.get("speaker_similarity") == "not_applicable":
+            row["speaker_embedding_model"] = "not_applicable"
+            continue
+
+        reference_audio = row.get("reference_audio") or ""
+        if not reference_audio:
+            row["speaker_embedding_model"] = backend_label
+            row["speaker_similarity"] = "missing_reference_audio"
+            continue
+
+        reference_path = _resolve_audio_path(run_path, reference_audio)
+        output_path = _resolve_audio_path(run_path, row["output_audio"])
+
+        if not reference_path.exists():
+            row["speaker_embedding_model"] = backend_label
+            row["speaker_similarity"] = "missing_reference_audio"
+            continue
+        if not output_path.exists():
+            row["failure_type"] = row.get("failure_type") or "model_error"
+            row["failure_reason"] = f"Audio file missing during speaker evaluation: {output_path}"
+            continue
+
+        if backend is None:
+            backend = SpeechBrainSpeakerEmbedding(source=model_source, savedir=savedir, device=device)
+            backend_label = backend.model_label
+
+        reference_embedding = backend.embed(reference_path)
+        output_embedding = backend.embed(output_path)
+        similarity = cosine_similarity(reference_embedding.vector, output_embedding.vector)
+
+        row["speaker_embedding_model"] = backend_label
+        row["speaker_similarity"] = round(similarity, 6)
+        similarities.append(
+            {
+                "sample_id": row.get("sample_id"),
+                "language": row.get("language"),
+                "model_id": row.get("model_id"),
+                "reference_audio": str(reference_path),
+                "output_audio": str(output_path),
+                "speaker_embedding_model": backend_label,
+                "speaker_similarity": round(similarity, 6),
+            }
+        )
+
+    write_benchmark_csv(benchmark_path, rows)
+    write_json(run_path / "speaker_similarity.json", similarities)
+    return benchmark_path
+

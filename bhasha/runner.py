@@ -56,6 +56,7 @@ def run_suite(
             for repeat_index in range(suite.repeat_count):
                 sample_id = _sample_id(model, prompt, repeat_index)
                 output_audio = audio_dir / prompt.language / model.id / f"{sample_id}.wav"
+                reference_audio = _reference_audio_for(model, prompt, language)
                 request = GenerationRequest(
                     run_id=run_id,
                     sample_id=sample_id,
@@ -63,6 +64,7 @@ def run_suite(
                     model=model,
                     prompt=prompt,
                     output_audio=output_audio,
+                    reference_audio=reference_audio,
                 )
 
                 try:
@@ -107,7 +109,7 @@ def run_suite(
         "suite": suite,
         "hardware_profile": hardware,
         "created_at_utc": dt.datetime.now(dt.timezone.utc).isoformat(),
-        "notes": "MOS, ASR WER/CER, and speaker similarity are pending later milestones.",
+        "notes": "MOS and speaker similarity may require later optional evaluation stages.",
     }
 
     write_benchmark_csv(run_dir / "benchmark.csv", rows)
@@ -126,6 +128,23 @@ def _new_run_id(suite_id: str) -> str:
 
 def _sample_id(model: ModelConfig, prompt: PromptConfig, repeat_index: int) -> str:
     return f"{prompt.language}_{model.id}_{prompt.id}_r{repeat_index + 1:02d}"
+
+
+def _reference_audio_for(model: ModelConfig, prompt: PromptConfig, language: LanguageConfig) -> Path | None:
+    if prompt.reference_audio:
+        return Path(prompt.reference_audio)
+
+    by_language = model.parameters.get("reference_audio_by_language")
+    if isinstance(by_language, dict):
+        raw_path = by_language.get(language.id)
+        if raw_path:
+            return Path(str(raw_path))
+
+    raw_path = model.parameters.get("reference_audio")
+    if raw_path:
+        return Path(str(raw_path))
+
+    return None
 
 
 def _row_for_result(
@@ -156,8 +175,8 @@ def _row_for_result(
         "asr_transcript": "",
         "wer": "pending",
         "cer": "pending",
-        "speaker_embedding_model": "pending",
-        "speaker_similarity": "not_applicable" if not model.supports_voice_cloning else "pending",
+        "speaker_embedding_model": "pending" if model.supports_voice_cloning else "not_applicable",
+        "speaker_similarity": "pending" if model.supports_voice_cloning else "not_applicable",
         "mos": "pending_human_eval",
         "status": result.status,
         "failure_type": result.failure_type or "",
@@ -196,7 +215,7 @@ def _row_for_failure(
         "asr_transcript": "",
         "wer": "pending",
         "cer": "pending",
-        "speaker_embedding_model": "pending",
+        "speaker_embedding_model": "pending" if model.supports_voice_cloning else "not_applicable",
         "speaker_similarity": "pending" if model.supports_voice_cloning else "not_applicable",
         "mos": "pending_human_eval",
         "status": status,
@@ -209,4 +228,3 @@ def _round(value: float | None) -> float | str:
     if value is None:
         return ""
     return round(value, 6)
-

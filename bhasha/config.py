@@ -80,10 +80,14 @@ def _model(data: dict) -> ModelConfig:
 
 
 def _prompt(data: dict) -> PromptConfig:
+    reference_audio = data.get("reference_audio")
+    if reference_audio is not None and not isinstance(reference_audio, str):
+        raise ValueError(f"Prompt {data.get('id', '<unknown>')} has invalid reference_audio")
+
     return PromptConfig(
         id=_required_str(data, "id"),
         language=_required_str(data, "language"),
         category=_required_str(data, "category"),
         text=_required_str(data, "text"),
+        reference_audio=reference_audio,
     )
-

@@ -3,10 +3,11 @@
 import argparse
 from pathlib import Path
 
-from .config import load_suite
 from .asr import ASRBackendError
-from .evaluation import evaluate_asr
+from .config import load_suite
+from .evaluation import evaluate_asr, evaluate_speaker_similarity
 from .runner import run_suite
+from .speaker import SpeakerBackendError
 
 
 def main(argv: list[str] | None = None) -> None:
@@ -31,6 +32,12 @@ def main(argv: list[str] | None = None) -> None:
     asr_parser.add_argument("--model-size", default="tiny", help="faster-whisper model size or local model path.")
     asr_parser.add_argument("--device", default="cpu", help="ASR device, for example cpu or cuda.")
     asr_parser.add_argument("--compute-type", default="int8", help="faster-whisper compute type, for example int8 or float16.")
+
+    speaker_parser = subparsers.add_parser("eval-speaker", help="Run speaker embedding cosine similarity evaluation for a completed run.")
+    speaker_parser.add_argument("--run-dir", required=True, help="Path to an outputs/runs/<run_id> directory.")
+    speaker_parser.add_argument("--model-source", default="speechbrain/spkrec-ecapa-voxceleb", help="SpeechBrain speaker model source or local path.")
+    speaker_parser.add_argument("--savedir", default="models/speaker/speechbrain-spkrec-ecapa-voxceleb", help="Local directory for downloaded speaker model files.")
+    speaker_parser.add_argument("--device", default="cpu", help="Speaker embedding device, for example cpu or cuda.")
 
     args = parser.parse_args(argv)
 
@@ -66,5 +73,17 @@ def main(argv: list[str] | None = None) -> None:
         print(f"ASR evaluation complete: {Path(benchmark_path).resolve()}")
         return
 
-    raise SystemExit(f"Unknown command: {args.command}")
+    if args.command == "eval-speaker":
+        try:
+            benchmark_path = evaluate_speaker_similarity(
+                args.run_dir,
+                model_source=args.model_source,
+                savedir=args.savedir,
+                device=args.device,
+            )
+        except SpeakerBackendError as exc:
+            raise SystemExit(str(exc)) from exc
+        print(f"Speaker evaluation complete: {Path(benchmark_path).resolve()}")
+        return
 
+    raise SystemExit(f"Unknown command: {args.command}")

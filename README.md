@@ -108,3 +108,14 @@ This updates `benchmark.csv` with:
 It also writes `transcripts.json` with normalized text and transcript details. For final results, use the same ASR model and hardware policy across comparable runs.
 
 WER note: numbers and punctuation can affect word-level scoring. Bhasha also reports CER so cases like `9:30` versus `930` are easier to interpret.
+
+## Speaker Similarity Evaluation
+
+For voice-cloning models, Bhasha can compare a reference voice clip against the generated clip using speaker embeddings and cosine similarity.
+
+```bash
+.venv\Scripts\python -m pip install -r requirements/speaker.txt
+.venv\Scripts\python -m bhasha eval-speaker --run-dir outputs\runs\<run_id> --device cpu
+```
+
+Non-cloning models are marked `not_applicable`. Cloning models without reference clips are marked `missing_reference_audio`.
