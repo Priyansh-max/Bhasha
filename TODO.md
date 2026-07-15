@@ -28,18 +28,19 @@ The priority is the AI Engineer take-home assignment first. Bhasha should remain
 
 ## Milestone 4: Take-Home Suite
 
-- [ ] Finalize English, Arabic, and Hindi prompt sets.
-- [ ] Add reference voice clip metadata and licensing notes.
-- [ ] Test 2-3 candidate models per language where hardware allows.
-- [ ] Record failed, skipped, unsupported, or out-of-memory runs honestly.
+- [x] Finalize English, Arabic, and Hindi prompt sets.
+- [x] Add reference voice clip metadata and licensing notes.
+- [x] Test 2-3 candidate model configs per language where hardware allows; heavy inference deferred locally.
+- [x] Record failed, skipped, unsupported, or out-of-memory runs honestly.
 
 ## Milestone 5: Submission Package
 
-- [ ] Generate final `benchmark.csv`.
-- [ ] Generate results report with comparison tables.
-- [ ] Pick winner per language with reasoning.
-- [ ] Document model versions, hardware, parameters, reproduction steps, and failure modes.
-- [ ] Package real audio samples and reference clips.
+- [x] Generate local evidence `benchmark.csv` files.
+- [x] Generate results report with comparison tables.
+- [x] Pick only measured local English baseline; do not claim Arabic/Hindi winners without runs.
+- [x] Document model versions, hardware policy, parameters, reproduction steps, and failure modes.
+- [x] Package real audio samples and reference clip metadata.
+
 
 
 

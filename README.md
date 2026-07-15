@@ -129,3 +129,20 @@ Bhasha generates `mos_ratings_template.csv` for real listeners. After ratings ar
 ```
 
 Blank scores are ignored. Invalid scores are reported in `mos_summary.json`. MOS remains `pending_human_eval` until valid human ratings exist.
+
+## Local Assignment Evidence
+
+The local-safe assignment package is documented in:
+
+```text
+docs/assignment/final_local_report.md
+```
+
+Tracked evidence is under:
+
+```text
+samples/piper_en_smoke/
+samples/multilingual_candidate_dry_run/
+```
+
+This repository does not claim full Arabic/Hindi winners from local runs. Heavy multilingual models are deferred because the current laptop should not be stressed for uncertain assignment value.

@@ -6,6 +6,7 @@ from pathlib import Path
 from .asr import ASRBackendError
 from .config import load_suite
 from .evaluation import evaluate_asr, evaluate_mos, evaluate_speaker_similarity
+from .report import generate_run_report
 from .runner import run_suite
 from .speaker import SpeakerBackendError
 
@@ -42,6 +43,10 @@ def main(argv: list[str] | None = None) -> None:
     mos_parser = subparsers.add_parser("eval-mos", help="Aggregate real listener MOS ratings for a completed run.")
     mos_parser.add_argument("--run-dir", required=True, help="Path to an outputs/runs/<run_id> directory.")
     mos_parser.add_argument("--ratings", help="Optional path to filled MOS ratings CSV. Defaults to mos_ratings_template.csv in the run directory.")
+
+    report_parser = subparsers.add_parser("generate-report", help="Generate a Markdown report for a completed run.")
+    report_parser.add_argument("--run-dir", required=True, help="Path to an outputs/runs/<run_id> directory.")
+    report_parser.add_argument("--output", help="Optional output Markdown path. Defaults to results.md in the run directory.")
 
     args = parser.parse_args(argv)
 
@@ -93,6 +98,11 @@ def main(argv: list[str] | None = None) -> None:
     if args.command == "eval-mos":
         benchmark_path = evaluate_mos(args.run_dir, ratings_path=args.ratings)
         print(f"MOS evaluation complete: {Path(benchmark_path).resolve()}")
+        return
+
+    if args.command == "generate-report":
+        report_path = generate_run_report(args.run_dir, output_path=args.output)
+        print(f"Report complete: {Path(report_path).resolve()}")
         return
 
     raise SystemExit(f"Unknown command: {args.command}")

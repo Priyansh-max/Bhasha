@@ -1,0 +1,30 @@
+[
+  {
+    "sample_id": "en_piper_en_lessac_medium_en_piper_001_r01",
+    "language": "en",
+    "input_text": "This is the first real text to speech benchmark sample from Bhasha.",
+    "normalized_input_text": "this is the first real text to speech benchmark sample from bhasha",
+    "asr_transcript": "This is the first real text to speech benchmark sample from Basha.",
+    "normalized_asr_transcript": "this is the first real text to speech benchmark sample from basha",
+    "wer": 0.083333,
+    "cer": 0.018182,
+    "asr_model": "faster-whisper:tiny:cpu:int8",
+    "audio_path": "outputs\\runs\\20260715T100951Z_piper_en_smoke\\audio\\en\\piper_en_lessac_medium\\en_piper_en_lessac_medium_en_piper_001_r01.wav",
+    "detected_language": "en",
+    "asr_duration_seconds": 3.494625
+  },
+  {
+    "sample_id": "en_piper_en_lessac_medium_en_piper_002_r01",
+    "language": "en",
+    "input_text": "Please call room number 204 at 9:30 tomorrow morning.",
+    "normalized_input_text": "please call room number 204 at 9 30 tomorrow morning",
+    "asr_transcript": "Please call room number 204 at 930 tomorrow morning.",
+    "normalized_asr_transcript": "please call room number 204 at 930 tomorrow morning",
+    "wer": 0.2,
+    "cer": 0.0,
+    "asr_model": "faster-whisper:tiny:cpu:int8",
+    "audio_path": "outputs\\runs\\20260715T100951Z_piper_en_smoke\\audio\\en\\piper_en_lessac_medium\\en_piper_en_lessac_medium_en_piper_002_r01.wav",
+    "detected_language": "en",
+    "asr_duration_seconds": 3.5526875
+  }
+]

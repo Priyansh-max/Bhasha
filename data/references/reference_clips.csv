@@ -1,0 +1,4 @@
+﻿reference_id,language,path,speaker_label,source_url,license,consent_status,duration_seconds,notes
+en_user_reference,en,data/references/en/reference.wav,user_recorded,,user_owned,pending_recording,,Record your own voice or replace with openly licensed sample
+ar_open_reference,ar,data/references/ar/reference.wav,open_license_sample,,pending_verification,pending,,Use only if license permits voice cloning/evaluation
+hi_user_reference,hi,data/references/hi/reference.wav,user_recorded,,user_owned,pending_recording,,Record your own voice or replace with openly licensed sample
