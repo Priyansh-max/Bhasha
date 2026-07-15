@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Any
 
 from .asr.faster_whisper_backend import FasterWhisperASR
+from .mos import MOSRating, aggregate_mos_ratings, parse_mos_score
 from .reporting import write_benchmark_csv, write_json
 from .speaker.speechbrain_backend import SpeechBrainSpeakerEmbedding
 from .speaker_metrics import cosine_similarity
@@ -154,4 +155,91 @@ def evaluate_speaker_similarity(
     write_benchmark_csv(benchmark_path, rows)
     write_json(run_path / "speaker_similarity.json", similarities)
     return benchmark_path
+
+
+
+def evaluate_mos(run_dir: str | Path, *, ratings_path: str | Path | None = None) -> Path:
+    run_path = Path(run_dir)
+    benchmark_path = run_path / "benchmark.csv"
+    if not benchmark_path.exists():
+        raise FileNotFoundError(f"Benchmark CSV not found: {benchmark_path}")
+
+    ratings_file = Path(ratings_path) if ratings_path else run_path / "mos_ratings_template.csv"
+    if not ratings_file.exists():
+        raise FileNotFoundError(f"MOS ratings CSV not found: {ratings_file}")
+
+    rows = _read_benchmark_csv(benchmark_path)
+    ratings, invalid_rows = _read_mos_ratings(ratings_file)
+    aggregations = aggregate_mos_ratings(ratings)
+
+    for row in rows:
+        if row.get("status") != "success":
+            continue
+        aggregation = aggregations.get(row.get("sample_id", ""))
+        if aggregation is None or aggregation.mos is None:
+            row["mos"] = "pending_human_eval"
+            continue
+        row["mos"] = round(aggregation.mos, 6)
+
+    summary = {
+        "ratings_file": str(ratings_file),
+        "valid_rating_count": len(ratings),
+        "invalid_rating_count": len(invalid_rows),
+        "invalid_rows": invalid_rows,
+        "samples": [
+            {
+                "sample_id": aggregation.sample_id,
+                "mos": round(aggregation.mos, 6) if aggregation.mos is not None else None,
+                "rating_count": aggregation.rating_count,
+                "score_std": round(aggregation.score_std, 6) if aggregation.score_std is not None else None,
+                "ratings": [
+                    {
+                        "listener_id": rating.listener_id,
+                        "score": rating.score,
+                        "same_speaker_ab": rating.same_speaker_ab,
+                        "notes": rating.notes,
+                    }
+                    for rating in aggregation.ratings
+                ],
+            }
+            for aggregation in aggregations.values()
+        ],
+    }
+
+    write_benchmark_csv(benchmark_path, rows)
+    write_json(run_path / "mos_summary.json", summary)
+    return benchmark_path
+
+
+def _read_mos_ratings(path: Path) -> tuple[list[MOSRating], list[dict[str, Any]]]:
+    ratings: list[MOSRating] = []
+    invalid_rows: list[dict[str, Any]] = []
+    with path.open("r", newline="", encoding="utf-8-sig") as handle:
+        reader = csv.DictReader(handle)
+        for line_number, row in enumerate(reader, start=2):
+            sample_id = (row.get("sample_id") or "").strip()
+            listener_id = (row.get("listener_id") or "").strip()
+            raw_score = row.get("score_1_to_5") or row.get("score") or ""
+            if not sample_id and not raw_score.strip():
+                continue
+            if not sample_id:
+                invalid_rows.append({"line_number": line_number, "reason": "missing sample_id", "row": row})
+                continue
+            try:
+                score = parse_mos_score(raw_score)
+            except ValueError as exc:
+                invalid_rows.append({"line_number": line_number, "sample_id": sample_id, "reason": str(exc), "row": row})
+                continue
+            if score is None:
+                continue
+            ratings.append(
+                MOSRating(
+                    sample_id=sample_id,
+                    listener_id=listener_id,
+                    score=score,
+                    same_speaker_ab=(row.get("same_speaker_ab") or "").strip(),
+                    notes=(row.get("notes") or "").strip(),
+                )
+            )
+    return ratings, invalid_rows
 

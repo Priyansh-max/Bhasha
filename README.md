@@ -119,3 +119,13 @@ For voice-cloning models, Bhasha can compare a reference voice clip against the 
 ```
 
 Non-cloning models are marked `not_applicable`. Cloning models without reference clips are marked `missing_reference_audio`.
+
+## MOS Aggregation
+
+Bhasha generates `mos_ratings_template.csv` for real listeners. After ratings are filled, aggregate them with:
+
+```bash
+.venv\Scripts\python -m bhasha eval-mos --run-dir outputs\runs\<run_id>
+```
+
+Blank scores are ignored. Invalid scores are reported in `mos_summary.json`. MOS remains `pending_human_eval` until valid human ratings exist.

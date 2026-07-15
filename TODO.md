@@ -24,7 +24,7 @@ The priority is the AI Engineer take-home assignment first. Bhasha should remain
 - [x] Add WER/CER metric code.
 - [x] Add ASR adapter using faster-whisper or another documented ASR backend.
 - [x] Add speaker embedding cosine similarity for cloning-capable models.
-- [ ] Add MOS aggregation from real listener ratings.
+- [x] Add MOS aggregation from real listener ratings.
 
 ## Milestone 4: Take-Home Suite
 
@@ -40,6 +40,7 @@ The priority is the AI Engineer take-home assignment first. Bhasha should remain
 - [ ] Pick winner per language with reasoning.
 - [ ] Document model versions, hardware, parameters, reproduction steps, and failure modes.
 - [ ] Package real audio samples and reference clips.
+
 
 
 

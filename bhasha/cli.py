@@ -5,7 +5,7 @@ from pathlib import Path
 
 from .asr import ASRBackendError
 from .config import load_suite
-from .evaluation import evaluate_asr, evaluate_speaker_similarity
+from .evaluation import evaluate_asr, evaluate_mos, evaluate_speaker_similarity
 from .runner import run_suite
 from .speaker import SpeakerBackendError
 
@@ -38,6 +38,10 @@ def main(argv: list[str] | None = None) -> None:
     speaker_parser.add_argument("--model-source", default="speechbrain/spkrec-ecapa-voxceleb", help="SpeechBrain speaker model source or local path.")
     speaker_parser.add_argument("--savedir", default="models/speaker/speechbrain-spkrec-ecapa-voxceleb", help="Local directory for downloaded speaker model files.")
     speaker_parser.add_argument("--device", default="cpu", help="Speaker embedding device, for example cpu or cuda.")
+
+    mos_parser = subparsers.add_parser("eval-mos", help="Aggregate real listener MOS ratings for a completed run.")
+    mos_parser.add_argument("--run-dir", required=True, help="Path to an outputs/runs/<run_id> directory.")
+    mos_parser.add_argument("--ratings", help="Optional path to filled MOS ratings CSV. Defaults to mos_ratings_template.csv in the run directory.")
 
     args = parser.parse_args(argv)
 
@@ -84,6 +88,11 @@ def main(argv: list[str] | None = None) -> None:
         except SpeakerBackendError as exc:
             raise SystemExit(str(exc)) from exc
         print(f"Speaker evaluation complete: {Path(benchmark_path).resolve()}")
+        return
+
+    if args.command == "eval-mos":
+        benchmark_path = evaluate_mos(args.run_dir, ratings_path=args.ratings)
+        print(f"MOS evaluation complete: {Path(benchmark_path).resolve()}")
         return
 
     raise SystemExit(f"Unknown command: {args.command}")
