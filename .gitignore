@@ -11,3 +11,6 @@ models/piper/*.onnx.json
 
 models/speaker/
 
+
+Screenshot *.png
+

@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "A reproducible multilingual TTS benchmark framework."
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "MIT" }
+license = { text = "PolyForm-Noncommercial-1.0.0" }
 authors = [
   { name = "Bhasha Contributors" }
 ]
@@ -34,5 +34,6 @@ bhasha = "bhasha.cli:main"
 
 [tool.setuptools.packages.find]
 include = ["bhasha*"]
+
 
 
