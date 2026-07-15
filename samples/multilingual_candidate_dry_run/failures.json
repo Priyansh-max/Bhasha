@@ -1,8 +1,8 @@
 [
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "en_xtts_v2_en_simple_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "en",
     "model_id": "xtts_v2",
     "prompt_id": "en_simple_001",
@@ -26,9 +26,9 @@
     "failure_reason": "Coqui TTS is not installed. Install with `pip install -r requirements/xtts.txt`."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "en_xtts_v2_en_numbers_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "en",
     "model_id": "xtts_v2",
     "prompt_id": "en_numbers_001",
@@ -52,9 +52,9 @@
     "failure_reason": "Coqui TTS is not installed. Install with `pip install -r requirements/xtts.txt`."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "en_xtts_v2_en_names_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "en",
     "model_id": "xtts_v2",
     "prompt_id": "en_names_001",
@@ -78,9 +78,9 @@
     "failure_reason": "Coqui TTS is not installed. Install with `pip install -r requirements/xtts.txt`."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "ar_xtts_v2_ar_simple_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "ar",
     "model_id": "xtts_v2",
     "prompt_id": "ar_simple_001",
@@ -104,9 +104,9 @@
     "failure_reason": "Coqui TTS is not installed. Install with `pip install -r requirements/xtts.txt`."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "ar_xtts_v2_ar_numbers_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "ar",
     "model_id": "xtts_v2",
     "prompt_id": "ar_numbers_001",
@@ -130,9 +130,9 @@
     "failure_reason": "Coqui TTS is not installed. Install with `pip install -r requirements/xtts.txt`."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "ar_xtts_v2_ar_names_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "ar",
     "model_id": "xtts_v2",
     "prompt_id": "ar_names_001",
@@ -156,9 +156,9 @@
     "failure_reason": "Coqui TTS is not installed. Install with `pip install -r requirements/xtts.txt`."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "hi_xtts_v2_hi_simple_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "hi",
     "model_id": "xtts_v2",
     "prompt_id": "hi_simple_001",
@@ -182,9 +182,9 @@
     "failure_reason": "Coqui TTS is not installed. Install with `pip install -r requirements/xtts.txt`."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "hi_xtts_v2_hi_numbers_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "hi",
     "model_id": "xtts_v2",
     "prompt_id": "hi_numbers_001",
@@ -208,9 +208,9 @@
     "failure_reason": "Coqui TTS is not installed. Install with `pip install -r requirements/xtts.txt`."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "hi_xtts_v2_hi_names_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "hi",
     "model_id": "xtts_v2",
     "prompt_id": "hi_names_001",
@@ -234,9 +234,9 @@
     "failure_reason": "Coqui TTS is not installed. Install with `pip install -r requirements/xtts.txt`."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "en_chatterbox_en_simple_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "en",
     "model_id": "chatterbox",
     "prompt_id": "en_simple_001",
@@ -260,9 +260,9 @@
     "failure_reason": "Chatterbox is not installed. Install with `pip install -r requirements/chatterbox.txt`."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "en_chatterbox_en_numbers_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "en",
     "model_id": "chatterbox",
     "prompt_id": "en_numbers_001",
@@ -286,9 +286,9 @@
     "failure_reason": "Chatterbox is not installed. Install with `pip install -r requirements/chatterbox.txt`."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "en_chatterbox_en_names_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "en",
     "model_id": "chatterbox",
     "prompt_id": "en_names_001",
@@ -312,9 +312,9 @@
     "failure_reason": "Chatterbox is not installed. Install with `pip install -r requirements/chatterbox.txt`."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "en_fish_speech_en_simple_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "en",
     "model_id": "fish_speech",
     "prompt_id": "en_simple_001",
@@ -338,9 +338,9 @@
     "failure_reason": "No command_template configured for fish_speech. Install the model repo and add its inference command."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "en_fish_speech_en_numbers_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "en",
     "model_id": "fish_speech",
     "prompt_id": "en_numbers_001",
@@ -364,9 +364,9 @@
     "failure_reason": "No command_template configured for fish_speech. Install the model repo and add its inference command."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "en_fish_speech_en_names_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "en",
     "model_id": "fish_speech",
     "prompt_id": "en_names_001",
@@ -390,9 +390,9 @@
     "failure_reason": "No command_template configured for fish_speech. Install the model repo and add its inference command."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "ar_fish_speech_ar_simple_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "ar",
     "model_id": "fish_speech",
     "prompt_id": "ar_simple_001",
@@ -416,9 +416,9 @@
     "failure_reason": "No command_template configured for fish_speech. Install the model repo and add its inference command."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "ar_fish_speech_ar_numbers_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "ar",
     "model_id": "fish_speech",
     "prompt_id": "ar_numbers_001",
@@ -442,9 +442,9 @@
     "failure_reason": "No command_template configured for fish_speech. Install the model repo and add its inference command."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "ar_fish_speech_ar_names_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "ar",
     "model_id": "fish_speech",
     "prompt_id": "ar_names_001",
@@ -468,9 +468,9 @@
     "failure_reason": "No command_template configured for fish_speech. Install the model repo and add its inference command."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "hi_fish_speech_hi_simple_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "hi",
     "model_id": "fish_speech",
     "prompt_id": "hi_simple_001",
@@ -494,9 +494,9 @@
     "failure_reason": "No command_template configured for fish_speech. Install the model repo and add its inference command."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "hi_fish_speech_hi_numbers_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "hi",
     "model_id": "fish_speech",
     "prompt_id": "hi_numbers_001",
@@ -520,9 +520,9 @@
     "failure_reason": "No command_template configured for fish_speech. Install the model repo and add its inference command."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "hi_fish_speech_hi_names_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "hi",
     "model_id": "fish_speech",
     "prompt_id": "hi_names_001",
@@ -546,9 +546,9 @@
     "failure_reason": "No command_template configured for fish_speech. Install the model repo and add its inference command."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "en_cosyvoice2_en_simple_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "en",
     "model_id": "cosyvoice2",
     "prompt_id": "en_simple_001",
@@ -572,9 +572,9 @@
     "failure_reason": "No command_template configured for cosyvoice2. Install the model repo and add its inference command."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "en_cosyvoice2_en_numbers_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "en",
     "model_id": "cosyvoice2",
     "prompt_id": "en_numbers_001",
@@ -598,9 +598,9 @@
     "failure_reason": "No command_template configured for cosyvoice2. Install the model repo and add its inference command."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "en_cosyvoice2_en_names_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "en",
     "model_id": "cosyvoice2",
     "prompt_id": "en_names_001",
@@ -624,9 +624,9 @@
     "failure_reason": "No command_template configured for cosyvoice2. Install the model repo and add its inference command."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "hi_indic_parler_tts_hi_simple_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "hi",
     "model_id": "indic_parler_tts",
     "prompt_id": "hi_simple_001",
@@ -650,9 +650,9 @@
     "failure_reason": "Indic Parler-TTS dependencies are not installed. Install with `pip install -r requirements/indic_parler.txt`."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "hi_indic_parler_tts_hi_numbers_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "hi",
     "model_id": "indic_parler_tts",
     "prompt_id": "hi_numbers_001",
@@ -676,9 +676,9 @@
     "failure_reason": "Indic Parler-TTS dependencies are not installed. Install with `pip install -r requirements/indic_parler.txt`."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "hi_indic_parler_tts_hi_names_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "hi",
     "model_id": "indic_parler_tts",
     "prompt_id": "hi_names_001",
@@ -702,9 +702,9 @@
     "failure_reason": "Indic Parler-TTS dependencies are not installed. Install with `pip install -r requirements/indic_parler.txt`."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "ar_mms_tts_ar_simple_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "ar",
     "model_id": "mms_tts",
     "prompt_id": "ar_simple_001",
@@ -728,9 +728,9 @@
     "failure_reason": "Transformers VITS dependencies are not installed. Install with `pip install -r requirements/hf_tts.txt`."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "ar_mms_tts_ar_numbers_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "ar",
     "model_id": "mms_tts",
     "prompt_id": "ar_numbers_001",
@@ -754,9 +754,9 @@
     "failure_reason": "Transformers VITS dependencies are not installed. Install with `pip install -r requirements/hf_tts.txt`."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "ar_mms_tts_ar_names_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "ar",
     "model_id": "mms_tts",
     "prompt_id": "ar_names_001",
@@ -780,9 +780,9 @@
     "failure_reason": "Transformers VITS dependencies are not installed. Install with `pip install -r requirements/hf_tts.txt`."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "hi_mms_tts_hi_simple_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "hi",
     "model_id": "mms_tts",
     "prompt_id": "hi_simple_001",
@@ -806,9 +806,9 @@
     "failure_reason": "Transformers VITS dependencies are not installed. Install with `pip install -r requirements/hf_tts.txt`."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "hi_mms_tts_hi_numbers_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "hi",
     "model_id": "mms_tts",
     "prompt_id": "hi_numbers_001",
@@ -832,9 +832,9 @@
     "failure_reason": "Transformers VITS dependencies are not installed. Install with `pip install -r requirements/hf_tts.txt`."
   },
   {
-    "run_id": "20260715T180238Z_multilingual_tts_takehome_v1",
+    "run_id": "20260715T181525Z_multilingual_tts_core_v1",
     "sample_id": "hi_mms_tts_hi_names_001_r01",
-    "suite_id": "multilingual_tts_takehome_v1",
+    "suite_id": "multilingual_tts_core_v1",
     "language": "hi",
     "model_id": "mms_tts",
     "prompt_id": "hi_names_001",

@@ -1,48 +1,29 @@
-﻿# Bhasha TODO
+﻿# Bhasha Roadmap
 
-The priority is the AI Engineer take-home assignment first. Bhasha should remain reusable, but we will avoid building unnecessary product features.
+Bhasha is a multilingual TTS benchmark framework. This checklist tracks framework work and release readiness.
 
-## Milestone 1: Benchmark Skeleton
+## Completed
 
-- [x] Define assignment-first scope.
-- [x] Create benchmark schema for suites, languages, models, prompts, runs, metrics, and failures.
-- [x] Add CLI entrypoint: `python -m bhasha`.
-- [x] Add dummy adapter for local smoke tests.
-- [x] Write structured run artifacts: audio, benchmark CSV, metadata, failures, MOS template, audio index.
-- [x] Verify smoke suite runs on local Python 3.10.
+- [x] Config-driven benchmark runner.
+- [x] TTS adapter interface and registry.
+- [x] Structured artifacts: audio, benchmark CSV, metadata, failures, MOS template, reports.
+- [x] Piper CLI baseline adapter.
+- [x] Optional candidate adapters for XTTS-v2, Chatterbox, Fish Speech, CosyVoice2, Indic Parler-TTS, and MMS-TTS/VITS.
+- [x] Latency, audio duration, and RTF measurement.
+- [x] ASR round-trip WER/CER evaluation.
+- [x] Speaker embedding cosine similarity framework.
+- [x] MOS rating aggregation from real listener scores.
+- [x] Markdown report generator.
+- [x] Local CPU example evidence package.
 
-## Milestone 2: First Real Audio
+## Next
 
-- [x] Choose first lightweight real TTS model for local or notebook testing.
-- [x] Add first real TTS adapter.
-- [x] Generate real audio samples.
-- [x] Record install steps and model version.
-
-## Milestone 3: Objective Metrics
-
-- [x] Add robust WAV audio duration extraction.
-- [x] Add WER/CER metric code.
-- [x] Add ASR adapter using faster-whisper or another documented ASR backend.
-- [x] Add speaker embedding cosine similarity for cloning-capable models.
-- [x] Add MOS aggregation from real listener ratings.
-
-## Milestone 4: Take-Home Suite
-
-- [x] Finalize English, Arabic, and Hindi prompt sets.
-- [x] Add reference voice clip metadata and licensing notes.
-- [x] Test 2-3 candidate model configs per language where hardware allows; heavy inference deferred locally.
-- [x] Record failed, skipped, unsupported, or out-of-memory runs honestly.
-
-## Milestone 5: Submission Package
-
-- [x] Generate local evidence `benchmark.csv` files.
-- [x] Generate results report with comparison tables.
-- [x] Pick only measured local English baseline; do not claim Arabic/Hindi winners without runs.
-- [x] Document model versions, hardware policy, parameters, reproduction steps, and failure modes.
-- [x] Package real audio samples and reference clip metadata.
-
-
-
-
-
+- [ ] Add a stable plugin-style adapter API for third-party models.
+- [ ] Add a dedicated `bhasha validate-suite` command.
+- [ ] Add hardware profile IDs and grouped leaderboard reports.
+- [ ] Add stronger language-specific text normalization for Arabic and Hindi.
+- [ ] Add warm-start timing support separate from cold-start timing.
+- [ ] Add streaming time-to-first-audio support for streaming models.
+- [ ] Add CI tests for config loading and report generation.
+- [ ] Run full model comparisons on one fixed GPU profile.
 

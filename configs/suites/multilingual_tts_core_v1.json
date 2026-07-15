@@ -1,7 +1,7 @@
 ﻿{
-  "suite_id": "multilingual_tts_takehome_v1",
-  "name": "Multilingual TTS take-home suite v1",
-  "description": "Assignment-focused suite for English, Arabic, and Hindi TTS benchmarking.",
+  "suite_id": "multilingual_tts_core_v1",
+  "name": "Multilingual TTS core suite v1",
+  "description": "Core multilingual TTS benchmark suite for English, Arabic, and Hindi.",
   "output_root": "outputs/runs",
   "repeat_count": 1,
   "languages": [
@@ -121,3 +121,4 @@
     { "id": "hi_names_001", "language": "hi", "category": "names", "text": "आयशा और रोहित सम्मेलन के बाद नई दिल्ली गए।" }
   ]
 }
+

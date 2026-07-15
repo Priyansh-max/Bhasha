@@ -1,6 +1,6 @@
 # Bhasha Run Report
 
-Run directory: `outputs\runs\20260715T180238Z_multilingual_tts_takehome_v1`
+Run directory: `outputs\runs\20260715T181525Z_multilingual_tts_core_v1`
 
 ## Scope
 

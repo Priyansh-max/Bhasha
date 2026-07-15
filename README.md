@@ -1,25 +1,48 @@
 ﻿# Bhasha
 
-Bhasha is a reproducible multilingual text-to-speech benchmark framework. The first target suite is an AI Engineer take-home evaluation for English, Arabic, and Hindi TTS pipelines, but the framework is designed so future models and languages can be added through adapters and config files.
+Bhasha is an open-source benchmark framework for evaluating text-to-speech systems across languages, models, voices, and hardware profiles.
 
-The project is assignment-first: it records real generated audio, measured metrics, hardware details, failures, and human-listening evidence. It must not fabricate MOS or any other metric.
+It is built around evidence, not claims: every run writes generated audio, measured timing, transcripts, metric tables, human-rating templates, hardware metadata, and failure records. If a model cannot run, Bhasha records why instead of hiding it.
 
-## Current Milestone
+## What Bhasha Measures
 
-Milestone 1 is a benchmark skeleton:
+Bhasha is designed to evaluate TTS systems on:
 
-- Suite configuration files.
-- CLI runner.
-- Dummy model adapter that generates a valid WAV tone.
-- Structured output directory.
-- `benchmark.csv`, `metadata.json`, `failures.json`, `audio_samples_index.md`, and `mos_ratings_template.csv`.
+| Metric | What It Answers | Output Field |
+| --- | --- | --- |
+| Generation latency | How long did synthesis take? | `generation_time_seconds`, `time_to_first_audio_seconds` |
+| Audio duration | How long is the produced clip? | `audio_duration_seconds` |
+| Real-Time Factor | Is generation faster than playback? | `rtf` |
+| Round-trip WER | Can ASR recover the intended words? | `wer` |
+| Round-trip CER | Can ASR recover the intended characters? | `cer` |
+| Speaker similarity | Does cloned speech match the reference speaker? | `speaker_similarity` |
+| MOS naturalness | How natural does the audio sound to listeners? | `mos` |
+| Failure status | Did the model run, skip, fail, or lack support? | `status`, `failure_type`, `failure_reason` |
 
-The dummy adapter is not a TTS model. It exists only to verify the benchmark mechanics before installing heavy models.
+Round-trip WER/CER are ASR-based intelligibility proxies, not perfect TTS correctness metrics. MOS comes only from real listener ratings. Speed metrics should only be compared within the same hardware profile.
+
+## Core Concepts
+
+- **Suite**: a benchmark definition with languages, prompts, models, and settings.
+- **Adapter**: a small integration layer that lets Bhasha call a TTS engine or model.
+- **Run**: one execution of a suite on one machine/hardware profile.
+- **Artifact**: generated audio, CSV metrics, metadata, reports, transcripts, and failure logs.
 
 ## Quick Start
 
+Install the lightweight Piper baseline:
+
 ```bash
-python -m bhasha run --suite configs/suites/smoke_test.json
+python -m venv .venv
+.venv\Scripts\python -m pip install -r requirements/piper.txt
+.venv\Scripts\python scripts\download_piper_voice.py
+```
+
+Run a real local TTS benchmark:
+
+```bash
+$env:PATH = (Resolve-Path '.venv\Scripts').Path + ';' + $env:PATH
+.venv\Scripts\python -m bhasha run --suite configs\suites\piper_en_smoke.json
 ```
 
 Outputs are written to:
@@ -28,143 +51,101 @@ Outputs are written to:
 outputs/runs/<run_id>/
 ```
 
-## Benchmark Rules
-
-1. Compare speed only within the same hardware profile.
-2. Use the same prompts, reference clips, and settings for all comparable models.
-3. Save every generated audio file.
-4. Record failed and skipped models honestly.
-5. Do not report MOS until real listeners have rated clips.
-6. Keep model versions, hardware, parameters, and commands in the report.
-
-## Assignment Metrics
-
-Bhasha is planned to evaluate:
-
-- MOS naturalness score from real listeners.
-- Speaker embedding cosine similarity for voice cloning.
-- Latency to first audio or full batch clip.
-- Real-Time Factor: generation time divided by audio duration.
-- Round-trip WER and CER using ASR.
-- Cross-language robustness across English, Arabic, and Hindi.
-
-## Compute Plan
-
-Development can happen locally. Heavy benchmark runs should happen on one fixed GPU environment. Results from different hardware profiles must be reported separately.
-
-## Next Milestones
-
-1. Add the first real local TTS adapter.
-2. Add audio duration and stronger latency instrumentation.
-3. Add ASR WER/CER evaluation.
-4. Add speaker similarity for cloning-capable models.
-5. Add the English, Arabic, and Hindi take-home suite with real model candidates.
-
-
-## Piper Baseline
-
-Piper is the first real local TTS baseline. It is CPU-friendly and useful for validating Bhasha with actual generated speech before moving to heavyweight multilingual/cloning models.
-
-Setup:
+Generate a Markdown report:
 
 ```bash
-python -m venv .venv
-.venv\Scripts\python -m pip install -r requirements/piper.txt
-.venv\Scripts\python scripts\download_piper_voice.py
+.venv\Scripts\python -m bhasha generate-report --run-dir outputs\runs\<run_id>
 ```
 
-Run:
+## Common Commands
+
+Inspect a suite:
 
 ```bash
-$env:PATH = (Resolve-Path '.venv\Scripts').Path + ';' + $env:PATH
-.venv\Scripts\python -m bhasha run --suite configs\suites\piper_en_smoke.json
+python -m bhasha inspect --suite configs/suites/multilingual_tts_core_v1.json
 ```
 
-The current Piper adapter invokes the `piper` CLI per sample, so measured latency includes process/model startup. Later benchmark stages should separate cold-start timing from warm generation timing.
-
-## ASR Round-Trip Evaluation
-
-Bhasha computes intelligibility by transcribing generated audio and comparing the ASR transcript to the original input text.
-
-Install the optional ASR dependency:
+Run a suite:
 
 ```bash
-.venv\Scripts\python -m pip install -r requirements/asr.txt
+python -m bhasha run --suite configs/suites/multilingual_tts_core_v1.json --include-disabled
 ```
 
-Evaluate an existing run:
+Evaluate ASR round-trip WER/CER:
 
 ```bash
-.venv\Scripts\python -m bhasha eval-asr --run-dir outputs\runs\<run_id> --model-size tiny --device cpu --compute-type int8
+python -m bhasha eval-asr --run-dir outputs/runs/<run_id> --model-size tiny --device cpu --compute-type int8
 ```
 
-This updates `benchmark.csv` with:
-
-- `asr_model`
-- `asr_transcript`
-- `wer`
-- `cer`
-
-It also writes `transcripts.json` with normalized text and transcript details. For final results, use the same ASR model and hardware policy across comparable runs.
-
-WER note: numbers and punctuation can affect word-level scoring. Bhasha also reports CER so cases like `9:30` versus `930` are easier to interpret.
-
-## Speaker Similarity Evaluation
-
-For voice-cloning models, Bhasha can compare a reference voice clip against the generated clip using speaker embeddings and cosine similarity.
+Evaluate speaker similarity:
 
 ```bash
-.venv\Scripts\python -m pip install -r requirements/speaker.txt
-.venv\Scripts\python -m bhasha eval-speaker --run-dir outputs\runs\<run_id> --device cpu
+python -m bhasha eval-speaker --run-dir outputs/runs/<run_id> --device cpu
 ```
 
-Non-cloning models are marked `not_applicable`. Cloning models without reference clips are marked `missing_reference_audio`.
-
-## MOS Aggregation
-
-Bhasha generates `mos_ratings_template.csv` for real listeners. After ratings are filled, aggregate them with:
+Aggregate real listener MOS ratings:
 
 ```bash
-.venv\Scripts\python -m bhasha eval-mos --run-dir outputs\runs\<run_id>
+python -m bhasha eval-mos --run-dir outputs/runs/<run_id>
 ```
 
-Blank scores are ignored. Invalid scores are reported in `mos_summary.json`. MOS remains `pending_human_eval` until valid human ratings exist.
+## Candidate Adapters
 
-## Local Assignment Evidence
+Bhasha includes optional adapter entry points for:
 
-The local-safe assignment package is documented in:
+- Piper
+- XTTS-v2
+- Chatterbox
+- Fish Speech via external command
+- CosyVoice2 via external command
+- Indic Parler-TTS
+- Hugging Face VITS / MMS-TTS
+
+Heavy adapters are not installed by default. Install one dependency file at a time, preferably on a GPU notebook or a fixed cloud/GPU machine.
+
+See:
 
 ```text
-docs/assignment/final_local_report.md
+docs/model_adapters.md
+docs/kaggle_gpu_runbook.md
 ```
 
-Tracked evidence is under:
+## Example Evidence
+
+Tracked example outputs are under:
 
 ```text
 samples/piper_en_smoke/
 samples/multilingual_candidate_dry_run/
 ```
 
-This repository does not claim full Arabic/Hindi winners from local runs. Heavy multilingual models are deferred because the current laptop should not be stressed for uncertain assignment value.
-
-## Candidate Model Adapters
-
-Bhasha includes optional adapters for the major candidate models used by the assignment: XTTS-v2, Chatterbox, Fish Speech, CosyVoice2, Indic Parler-TTS, MMS-TTS, and Piper.
-
-See:
+The local CPU example is documented in:
 
 ```text
-docs/model_adapters.md
+examples/local_cpu/report.md
+examples/local_cpu/compute_policy.md
+examples/local_cpu/candidate_matrix.md
 ```
 
-Heavy adapters are not installed by default. Install one requirement file at a time on Kaggle/Colab/GPU hardware.
+These examples show how Bhasha records real measurements and honest skipped/deferred models. They are not a global leaderboard.
 
-## Kaggle GPU Runbook
+## Add A New Model
 
-For major model runs, use the lightweight instructions in:
+1. Add an adapter under `bhasha/adapters/`.
+2. Register it in `bhasha/adapters/registry.py`.
+3. Add a model entry to a suite JSON file.
+4. Run the suite.
+5. Evaluate ASR, speaker similarity, and MOS as applicable.
+6. Generate a report.
 
-```text
-docs/kaggle_gpu_runbook.md
-```
+A model adapter should return structured success, skipped, failed, or unsupported results. Missing dependencies should be recorded as `skipped` with a clear reason.
 
-Run one adapter stack at a time and keep outputs grouped by hardware profile.
+## Benchmark Rules
+
+1. Do not fabricate metrics.
+2. Save generated audio and benchmark rows.
+3. Record hardware and dependency failures.
+4. Compare speed only within the same hardware profile.
+5. Keep MOS separate from automatic metrics.
+6. Use consented or openly licensed reference clips for voice cloning.
+7. Report unsupported languages explicitly.

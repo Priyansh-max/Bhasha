@@ -1,18 +1,18 @@
 ﻿# Multilingual Candidate Dry Run
 
-This is a lightweight local dry-run of the assignment candidate suite.
+This is a lightweight local dry-run of the core multilingual candidate suite.
 
 Command:
 
 ```bash
-.venv\Scripts\python -m bhasha run --suite configs\suites\multilingual_tts_takehome_v1.json --include-disabled
+.venv\Scripts\python -m bhasha run --suite configs\suites\multilingual_tts_core_v1.json --include-disabled
 ```
 
-This did not install or execute heavy TTS models. It verifies that the optional adapters are registered and records dependency/configuration gaps cleanly.
+This does not install or execute heavyweight TTS models. It verifies that optional adapters are registered and records dependency/configuration gaps cleanly.
 
 Purpose:
 
 - Preserve honest local failure/deferred evidence.
-- Avoid stressing the laptop.
-- Confirm the code has adapter entry points for XTTS-v2, Chatterbox, Fish Speech, CosyVoice2, Indic Parler-TTS, and MMS-TTS.
-- Keep the assignment reproducible without fabricating model metrics.
+- Avoid stressing local hardware.
+- Confirm adapter entry points for XTTS-v2, Chatterbox, Fish Speech, CosyVoice2, Indic Parler-TTS, and MMS-TTS.
+- Keep benchmark behavior reproducible without fabricating model metrics.

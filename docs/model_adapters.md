@@ -1,6 +1,6 @@
 ﻿# Model Adapter Guide
 
-Bhasha now has adapter entry points for the assignment candidate models. These adapters are optional: they skip cleanly if dependencies, model files, reference clips, or external commands are missing.
+Bhasha now has adapter entry points for the benchmark candidate models. These adapters are optional: they skip cleanly if dependencies, model files, reference clips, or external commands are missing.
 
 ## Adapter IDs
 
@@ -48,7 +48,7 @@ Install and test one adapter at a time:
 
 ```bash
 pip install -r requirements/xtts.txt
-python -m bhasha run --suite configs/suites/multilingual_tts_takehome_v1.json --model xtts_v2 --language en --include-disabled
+python -m bhasha run --suite configs/suites/multilingual_tts_core_v1.json --model xtts_v2 --language en --include-disabled
 ```
 
 Then repeat for the next model. Do not compare speed metrics across different hardware sessions unless the GPU profile is the same and recorded.
@@ -64,3 +64,4 @@ data/references/hi/reference.wav
 ```
 
 Without those files, cloning adapters report skipped/missing reference behavior instead of fabricating speaker similarity.
+

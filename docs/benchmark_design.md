@@ -1,8 +1,6 @@
-# Bhasha Benchmark Design
+﻿# Benchmark Design
 
-## Purpose
-
-Bhasha compares TTS systems under controlled conditions. A benchmark run should answer:
+Bhasha compares TTS systems under controlled conditions. A run should answer:
 
 > Given a language, model, prompt, hardware profile, and optional reference voice, how good, fast, reproducible, and reliable is the generated speech?
 
@@ -10,15 +8,15 @@ Bhasha compares TTS systems under controlled conditions. A benchmark run should 
 
 ### Suite
 
-A suite defines the benchmark task. It contains languages, prompts, candidate models, and run settings.
+A suite defines the benchmark task: languages, prompts, candidate models, adapter settings, and output location.
 
 ### Language
 
-A language entry stores the display name, BCP-47-ish language code, script, and ASR language hint.
+A language entry stores the display name, language code, script, and ASR language hint.
 
 ### Prompt
 
-A prompt is a fixed test sentence. Prompts should cover simple speech, numbers, names, punctuation, and longer phrasing.
+A prompt is a fixed test sentence. Strong prompt sets cover simple speech, numbers, names, punctuation, and longer phrasing.
 
 ### Model
 
@@ -26,11 +24,11 @@ A model entry describes an adapter, source, license, supported languages, clonin
 
 ### Run
 
-A run is one execution of a suite on a specific machine. Bhasha records the hardware profile so results can be grouped fairly.
+A run is one execution of a suite on a specific machine. Bhasha records hardware metadata so results can be grouped fairly.
 
 ## Result Schema
 
-Each generated row should contain:
+Each generated row contains:
 
 ```text
 run_id
@@ -85,8 +83,8 @@ unknown
 
 - Speed metrics are comparable only within the same hardware profile.
 - Quality metrics should use identical prompts and decoding parameters.
-- Different hardware profiles must be reported as separate tables.
-- A model that cannot run on available hardware is not a bad model; it is a failed or unsupported run for that hardware profile.
+- Different hardware profiles should be reported as separate tables.
+- A model that cannot run on available hardware is not automatically a bad model; it is a failed or unsupported run for that hardware profile.
 
 ## MOS Policy
 

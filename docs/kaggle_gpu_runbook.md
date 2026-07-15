@@ -39,7 +39,7 @@ Then run one language first:
 
 ```bash
 !python -m bhasha run \
-  --suite configs/suites/multilingual_tts_takehome_v1.json \
+  --suite configs/suites/multilingual_tts_core_v1.json \
   --model xtts_v2 \
   --language en \
   --include-disabled
@@ -50,7 +50,7 @@ Then run one language first:
 ```bash
 !pip install -r requirements/hf_tts.txt
 !python -m bhasha run \
-  --suite configs/suites/multilingual_tts_takehome_v1.json \
+  --suite configs/suites/multilingual_tts_core_v1.json \
   --model mms_tts \
   --language hi \
   --include-disabled
@@ -61,7 +61,7 @@ Then run one language first:
 ```bash
 !pip install -r requirements/indic_parler.txt
 !python -m bhasha run \
-  --suite configs/suites/multilingual_tts_takehome_v1.json \
+  --suite configs/suites/multilingual_tts_core_v1.json \
   --model indic_parler_tts \
   --language hi \
   --include-disabled
@@ -72,7 +72,7 @@ Then run one language first:
 ```bash
 !pip install -r requirements/chatterbox.txt
 !python -m bhasha run \
-  --suite configs/suites/multilingual_tts_takehome_v1.json \
+  --suite configs/suites/multilingual_tts_core_v1.json \
   --model chatterbox \
   --language en \
   --include-disabled
@@ -105,3 +105,4 @@ Download `bhasha_outputs.zip` from the Kaggle file browser.
 - Do not compare speed numbers across different GPU types.
 - Do not report MOS until real listeners fill the rating CSV.
 - Do not claim a language winner without real generated audio and metrics.
+
