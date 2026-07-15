@@ -1,6 +1,6 @@
 # Bhasha Run Report
 
-Run directory: `outputs\runs\20260715T121142Z_multilingual_tts_takehome_v1`
+Run directory: `outputs\runs\20260715T180238Z_multilingual_tts_takehome_v1`
 
 ## Scope
 
@@ -76,36 +76,36 @@ Run directory: `outputs\runs\20260715T121142Z_multilingual_tts_takehome_v1`
 
 ## Failures And Skips
 
-- `en_xtts_v2_en_simple_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
-- `en_xtts_v2_en_numbers_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
-- `en_xtts_v2_en_names_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
-- `ar_xtts_v2_ar_simple_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
-- `ar_xtts_v2_ar_numbers_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
-- `ar_xtts_v2_ar_names_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
-- `hi_xtts_v2_hi_simple_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
-- `hi_xtts_v2_hi_numbers_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
-- `hi_xtts_v2_hi_names_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
-- `en_chatterbox_en_simple_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
-- `en_chatterbox_en_numbers_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
-- `en_chatterbox_en_names_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
+- `en_xtts_v2_en_simple_001_r01`: skipped / dependency_error - Coqui TTS is not installed. Install with `pip install -r requirements/xtts.txt`.
+- `en_xtts_v2_en_numbers_001_r01`: skipped / dependency_error - Coqui TTS is not installed. Install with `pip install -r requirements/xtts.txt`.
+- `en_xtts_v2_en_names_001_r01`: skipped / dependency_error - Coqui TTS is not installed. Install with `pip install -r requirements/xtts.txt`.
+- `ar_xtts_v2_ar_simple_001_r01`: skipped / dependency_error - Coqui TTS is not installed. Install with `pip install -r requirements/xtts.txt`.
+- `ar_xtts_v2_ar_numbers_001_r01`: skipped / dependency_error - Coqui TTS is not installed. Install with `pip install -r requirements/xtts.txt`.
+- `ar_xtts_v2_ar_names_001_r01`: skipped / dependency_error - Coqui TTS is not installed. Install with `pip install -r requirements/xtts.txt`.
+- `hi_xtts_v2_hi_simple_001_r01`: skipped / dependency_error - Coqui TTS is not installed. Install with `pip install -r requirements/xtts.txt`.
+- `hi_xtts_v2_hi_numbers_001_r01`: skipped / dependency_error - Coqui TTS is not installed. Install with `pip install -r requirements/xtts.txt`.
+- `hi_xtts_v2_hi_names_001_r01`: skipped / dependency_error - Coqui TTS is not installed. Install with `pip install -r requirements/xtts.txt`.
+- `en_chatterbox_en_simple_001_r01`: skipped / dependency_error - Chatterbox is not installed. Install with `pip install -r requirements/chatterbox.txt`.
+- `en_chatterbox_en_numbers_001_r01`: skipped / dependency_error - Chatterbox is not installed. Install with `pip install -r requirements/chatterbox.txt`.
+- `en_chatterbox_en_names_001_r01`: skipped / dependency_error - Chatterbox is not installed. Install with `pip install -r requirements/chatterbox.txt`.
 - `ar_chatterbox_ar_simple_001_failed`: unsupported / unsupported_language - Model does not list this language
 - `ar_chatterbox_ar_numbers_001_failed`: unsupported / unsupported_language - Model does not list this language
 - `ar_chatterbox_ar_names_001_failed`: unsupported / unsupported_language - Model does not list this language
 - `hi_chatterbox_hi_simple_001_failed`: unsupported / unsupported_language - Model does not list this language
 - `hi_chatterbox_hi_numbers_001_failed`: unsupported / unsupported_language - Model does not list this language
 - `hi_chatterbox_hi_names_001_failed`: unsupported / unsupported_language - Model does not list this language
-- `en_fish_speech_en_simple_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
-- `en_fish_speech_en_numbers_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
-- `en_fish_speech_en_names_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
-- `ar_fish_speech_ar_simple_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
-- `ar_fish_speech_ar_numbers_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
-- `ar_fish_speech_ar_names_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
-- `hi_fish_speech_hi_simple_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
-- `hi_fish_speech_hi_numbers_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
-- `hi_fish_speech_hi_names_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
-- `en_cosyvoice2_en_simple_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
-- `en_cosyvoice2_en_numbers_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
-- `en_cosyvoice2_en_names_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
+- `en_fish_speech_en_simple_001_r01`: skipped / dependency_error - No command_template configured for fish_speech. Install the model repo and add its inference command.
+- `en_fish_speech_en_numbers_001_r01`: skipped / dependency_error - No command_template configured for fish_speech. Install the model repo and add its inference command.
+- `en_fish_speech_en_names_001_r01`: skipped / dependency_error - No command_template configured for fish_speech. Install the model repo and add its inference command.
+- `ar_fish_speech_ar_simple_001_r01`: skipped / dependency_error - No command_template configured for fish_speech. Install the model repo and add its inference command.
+- `ar_fish_speech_ar_numbers_001_r01`: skipped / dependency_error - No command_template configured for fish_speech. Install the model repo and add its inference command.
+- `ar_fish_speech_ar_names_001_r01`: skipped / dependency_error - No command_template configured for fish_speech. Install the model repo and add its inference command.
+- `hi_fish_speech_hi_simple_001_r01`: skipped / dependency_error - No command_template configured for fish_speech. Install the model repo and add its inference command.
+- `hi_fish_speech_hi_numbers_001_r01`: skipped / dependency_error - No command_template configured for fish_speech. Install the model repo and add its inference command.
+- `hi_fish_speech_hi_names_001_r01`: skipped / dependency_error - No command_template configured for fish_speech. Install the model repo and add its inference command.
+- `en_cosyvoice2_en_simple_001_r01`: skipped / dependency_error - No command_template configured for cosyvoice2. Install the model repo and add its inference command.
+- `en_cosyvoice2_en_numbers_001_r01`: skipped / dependency_error - No command_template configured for cosyvoice2. Install the model repo and add its inference command.
+- `en_cosyvoice2_en_names_001_r01`: skipped / dependency_error - No command_template configured for cosyvoice2. Install the model repo and add its inference command.
 - `ar_cosyvoice2_ar_simple_001_failed`: unsupported / unsupported_language - Model does not list this language
 - `ar_cosyvoice2_ar_numbers_001_failed`: unsupported / unsupported_language - Model does not list this language
 - `ar_cosyvoice2_ar_names_001_failed`: unsupported / unsupported_language - Model does not list this language
@@ -118,18 +118,18 @@ Run directory: `outputs\runs\20260715T121142Z_multilingual_tts_takehome_v1`
 - `ar_indic_parler_tts_ar_simple_001_failed`: unsupported / unsupported_language - Model does not list this language
 - `ar_indic_parler_tts_ar_numbers_001_failed`: unsupported / unsupported_language - Model does not list this language
 - `ar_indic_parler_tts_ar_names_001_failed`: unsupported / unsupported_language - Model does not list this language
-- `hi_indic_parler_tts_hi_simple_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
-- `hi_indic_parler_tts_hi_numbers_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
-- `hi_indic_parler_tts_hi_names_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
+- `hi_indic_parler_tts_hi_simple_001_r01`: skipped / dependency_error - Indic Parler-TTS dependencies are not installed. Install with `pip install -r requirements/indic_parler.txt`.
+- `hi_indic_parler_tts_hi_numbers_001_r01`: skipped / dependency_error - Indic Parler-TTS dependencies are not installed. Install with `pip install -r requirements/indic_parler.txt`.
+- `hi_indic_parler_tts_hi_names_001_r01`: skipped / dependency_error - Indic Parler-TTS dependencies are not installed. Install with `pip install -r requirements/indic_parler.txt`.
 - `en_mms_tts_en_simple_001_failed`: unsupported / unsupported_language - Model does not list this language
 - `en_mms_tts_en_numbers_001_failed`: unsupported / unsupported_language - Model does not list this language
 - `en_mms_tts_en_names_001_failed`: unsupported / unsupported_language - Model does not list this language
-- `ar_mms_tts_ar_simple_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
-- `ar_mms_tts_ar_numbers_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
-- `ar_mms_tts_ar_names_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
-- `hi_mms_tts_hi_simple_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
-- `hi_mms_tts_hi_numbers_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
-- `hi_mms_tts_hi_names_001_r01`: skipped / dependency_error - "No adapter registered for 'pending'"
+- `ar_mms_tts_ar_simple_001_r01`: skipped / dependency_error - Transformers VITS dependencies are not installed. Install with `pip install -r requirements/hf_tts.txt`.
+- `ar_mms_tts_ar_numbers_001_r01`: skipped / dependency_error - Transformers VITS dependencies are not installed. Install with `pip install -r requirements/hf_tts.txt`.
+- `ar_mms_tts_ar_names_001_r01`: skipped / dependency_error - Transformers VITS dependencies are not installed. Install with `pip install -r requirements/hf_tts.txt`.
+- `hi_mms_tts_hi_simple_001_r01`: skipped / dependency_error - Transformers VITS dependencies are not installed. Install with `pip install -r requirements/hf_tts.txt`.
+- `hi_mms_tts_hi_numbers_001_r01`: skipped / dependency_error - Transformers VITS dependencies are not installed. Install with `pip install -r requirements/hf_tts.txt`.
+- `hi_mms_tts_hi_names_001_r01`: skipped / dependency_error - Transformers VITS dependencies are not installed. Install with `pip install -r requirements/hf_tts.txt`.
 
 ## Notes
 

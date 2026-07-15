@@ -1,0 +1,3 @@
+﻿# Fish Speech and CosyVoice2 are repository-style integrations.
+# Clone/install their upstream repos in a separate environment, then set
+# `command_template` in configs/suites/multilingual_tts_takehome_v1.json.

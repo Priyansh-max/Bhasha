@@ -10,12 +10,104 @@
     { "id": "hi", "name": "Hindi", "script": "Devanagari", "asr_language": "hi" }
   ],
   "models": [
-    { "id": "xtts_v2", "name": "XTTS-v2", "adapter": "pending", "enabled": false, "supports_voice_cloning": true, "license": "Open model license; verify exact terms before final report", "source": "https://huggingface.co/coqui/XTTS-v2", "languages": ["en", "ar", "hi"] },
-    { "id": "chatterbox", "name": "Chatterbox", "adapter": "pending", "enabled": false, "supports_voice_cloning": true, "license": "Open-source; verify exact model license before final report", "source": "https://github.com/resemble-ai/chatterbox", "languages": ["en"] },
-    { "id": "fish_speech", "name": "Fish Speech", "adapter": "pending", "enabled": false, "supports_voice_cloning": true, "license": "Open-source; verify exact model license before final report", "source": "https://github.com/fishaudio/fish-speech", "languages": ["en", "ar", "hi"] },
-    { "id": "cosyvoice2", "name": "CosyVoice2", "adapter": "pending", "enabled": false, "supports_voice_cloning": true, "license": "Open-source; verify exact model license before final report", "source": "https://github.com/FunAudioLLM/CosyVoice", "languages": ["en"] },
-    { "id": "indic_parler_tts", "name": "Indic Parler-TTS", "adapter": "pending", "enabled": false, "supports_voice_cloning": false, "license": "Open-source; verify exact model license before final report", "source": "https://huggingface.co/ai4bharat", "languages": ["hi"] },
-    { "id": "mms_tts", "name": "Meta MMS-TTS", "adapter": "pending", "enabled": false, "supports_voice_cloning": false, "license": "Open-source; verify exact model license before final report", "source": "https://huggingface.co/facebook/mms-tts", "languages": ["ar", "hi"] }
+    {
+      "id": "xtts_v2",
+      "name": "XTTS-v2",
+      "adapter": "xtts_v2",
+      "enabled": false,
+      "supports_voice_cloning": true,
+      "license": "Open model license; verify exact terms before final report",
+      "source": "https://huggingface.co/coqui/XTTS-v2",
+      "languages": ["en", "ar", "hi"],
+      "parameters": {
+        "model_name": "tts_models/multilingual/multi-dataset/xtts_v2",
+        "device": "cuda",
+        "language_map": { "en": "en", "ar": "ar", "hi": "hi" },
+        "reference_audio_by_language": {
+          "en": "data/references/en/reference.wav",
+          "ar": "data/references/ar/reference.wav",
+          "hi": "data/references/hi/reference.wav"
+        }
+      }
+    },
+    {
+      "id": "chatterbox",
+      "name": "Chatterbox",
+      "adapter": "chatterbox",
+      "enabled": false,
+      "supports_voice_cloning": true,
+      "license": "Open-source; verify exact model license before final report",
+      "source": "https://github.com/resemble-ai/chatterbox",
+      "languages": ["en"],
+      "parameters": {
+        "device": "cuda",
+        "reference_audio": "data/references/en/reference.wav"
+      }
+    },
+    {
+      "id": "fish_speech",
+      "name": "Fish Speech",
+      "adapter": "fish_speech_cli",
+      "enabled": false,
+      "supports_voice_cloning": true,
+      "license": "Open-source; verify exact model license before final report",
+      "source": "https://github.com/fishaudio/fish-speech",
+      "languages": ["en", "ar", "hi"],
+      "parameters": {
+        "command_template": [],
+        "reference_audio_by_language": {
+          "en": "data/references/en/reference.wav",
+          "ar": "data/references/ar/reference.wav",
+          "hi": "data/references/hi/reference.wav"
+        }
+      }
+    },
+    {
+      "id": "cosyvoice2",
+      "name": "CosyVoice2",
+      "adapter": "cosyvoice_cli",
+      "enabled": false,
+      "supports_voice_cloning": true,
+      "license": "Open-source; verify exact model license before final report",
+      "source": "https://github.com/FunAudioLLM/CosyVoice",
+      "languages": ["en"],
+      "parameters": {
+        "command_template": [],
+        "reference_audio": "data/references/en/reference.wav"
+      }
+    },
+    {
+      "id": "indic_parler_tts",
+      "name": "Indic Parler-TTS",
+      "adapter": "indic_parler_tts",
+      "enabled": false,
+      "supports_voice_cloning": false,
+      "license": "Open-source; verify exact model license before final report",
+      "source": "https://huggingface.co/ai4bharat",
+      "languages": ["hi"],
+      "parameters": {
+        "model_name": "ai4bharat/indic-parler-tts",
+        "device": "cuda",
+        "description": "A clear, natural Hindi speaker voice recorded in a quiet studio."
+      }
+    },
+    {
+      "id": "mms_tts",
+      "name": "Meta MMS-TTS",
+      "adapter": "hf_vits",
+      "enabled": false,
+      "supports_voice_cloning": false,
+      "license": "Open-source; verify exact model license before final report",
+      "source": "https://huggingface.co/facebook/mms-tts",
+      "languages": ["ar", "hi"],
+      "parameters": {
+        "device": "cuda",
+        "model_by_language": {
+          "ar": "facebook/mms-tts-ara",
+          "hi": "facebook/mms-tts-hin"
+        }
+      }
+    }
   ],
   "prompts": [
     { "id": "en_simple_001", "language": "en", "category": "simple", "text": "The new language model reads this sentence clearly." },

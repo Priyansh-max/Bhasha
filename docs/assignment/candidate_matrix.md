@@ -1,6 +1,6 @@
 ﻿# Model Candidate Matrix
 
-This is the assignment candidate set. Local status is conservative: only lightweight Piper was run locally. Heavy models are configured/deferred until a fixed GPU environment is available.
+This is the assignment candidate set. Local status is conservative: only lightweight Piper was run locally. Heavy models now have optional adapters, but remain deferred until a fixed GPU environment is available.
 
 | Language | Candidate | Task Fit | Local Status | Reason |
 | --- | --- | --- | --- | --- |
@@ -16,3 +16,4 @@ This is the assignment candidate set. Local status is conservative: only lightwe
 | Hindi | MMS-TTS / Indic-TTS | Lightweight Indic baseline candidate | Deferred | Needs model selection/license verification |
 
 No winner is claimed for Arabic or Hindi without measured audio. Bhasha records this honestly rather than fabricating metrics.
+

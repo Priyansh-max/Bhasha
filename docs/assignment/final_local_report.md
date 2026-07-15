@@ -77,7 +77,7 @@ This run did not execute heavy models. It records local availability status for 
 21 unsupported
 ```
 
-Skipped means adapter/model execution was not available locally. Unsupported means the model config does not claim that language.
+Skipped means dependencies, reference clips, command templates, or model execution were not available locally. Unsupported means the model config does not claim that language.
 
 ## Candidate Matrix
 
@@ -129,5 +129,6 @@ Final ASR should use a stronger model such as faster-whisper large-v3 if hardwar
 - Local laptop is not suitable for heavyweight model comparison.
 - No consented/openly licensed reference voice clip has been recorded yet.
 - No real MOS ratings have been collected yet.
-- Heavy candidates are configured but deferred.
+- Heavy candidates now have optional adapter entry points, but actual heavy inference is deferred.
 - Round-trip WER depends on ASR quality and text normalization, so it is a proxy, not pure TTS correctness.
+

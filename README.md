@@ -146,3 +146,25 @@ samples/multilingual_candidate_dry_run/
 ```
 
 This repository does not claim full Arabic/Hindi winners from local runs. Heavy multilingual models are deferred because the current laptop should not be stressed for uncertain assignment value.
+
+## Candidate Model Adapters
+
+Bhasha includes optional adapters for the major candidate models used by the assignment: XTTS-v2, Chatterbox, Fish Speech, CosyVoice2, Indic Parler-TTS, MMS-TTS, and Piper.
+
+See:
+
+```text
+docs/model_adapters.md
+```
+
+Heavy adapters are not installed by default. Install one requirement file at a time on Kaggle/Colab/GPU hardware.
+
+## Kaggle GPU Runbook
+
+For major model runs, use the lightweight instructions in:
+
+```text
+docs/kaggle_gpu_runbook.md
+```
+
+Run one adapter stack at a time and keep outputs grouped by hardware profile.
