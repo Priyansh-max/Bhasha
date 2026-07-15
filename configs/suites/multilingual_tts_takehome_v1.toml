@@ -1,0 +1,137 @@
+suite_id = "multilingual_tts_takehome_v1"
+name = "Multilingual TTS take-home suite v1"
+description = "Assignment-focused suite for English, Arabic, and Hindi TTS benchmarking."
+output_root = "outputs/runs"
+repeat_count = 1
+
+[[languages]]
+id = "en"
+name = "English"
+script = "Latin"
+asr_language = "en"
+
+[[languages]]
+id = "ar"
+name = "Arabic"
+script = "Arabic"
+asr_language = "ar"
+
+[[languages]]
+id = "hi"
+name = "Hindi"
+script = "Devanagari"
+asr_language = "hi"
+
+[[models]]
+id = "xtts_v2"
+name = "XTTS-v2"
+adapter = "pending"
+enabled = false
+supports_voice_cloning = true
+license = "Open model license; verify exact terms before final report"
+source = "https://huggingface.co/coqui/XTTS-v2"
+languages = ["en", "ar", "hi"]
+
+[[models]]
+id = "chatterbox"
+name = "Chatterbox"
+adapter = "pending"
+enabled = false
+supports_voice_cloning = true
+license = "Open-source; verify exact model license before final report"
+source = "https://github.com/resemble-ai/chatterbox"
+languages = ["en"]
+
+[[models]]
+id = "fish_speech"
+name = "Fish Speech"
+adapter = "pending"
+enabled = false
+supports_voice_cloning = true
+license = "Open-source; verify exact model license before final report"
+source = "https://github.com/fishaudio/fish-speech"
+languages = ["en", "ar", "hi"]
+
+[[models]]
+id = "cosyvoice2"
+name = "CosyVoice2"
+adapter = "pending"
+enabled = false
+supports_voice_cloning = true
+license = "Open-source; verify exact model license before final report"
+source = "https://github.com/FunAudioLLM/CosyVoice"
+languages = ["en"]
+
+[[models]]
+id = "indic_parler_tts"
+name = "Indic Parler-TTS"
+adapter = "pending"
+enabled = false
+supports_voice_cloning = false
+license = "Open-source; verify exact model license before final report"
+source = "https://huggingface.co/ai4bharat"
+languages = ["hi"]
+
+[[models]]
+id = "mms_tts"
+name = "Meta MMS-TTS"
+adapter = "pending"
+enabled = false
+supports_voice_cloning = false
+license = "Open-source; verify exact model license before final report"
+source = "https://huggingface.co/facebook/mms-tts"
+languages = ["ar", "hi"]
+
+[[prompts]]
+id = "en_simple_001"
+language = "en"
+category = "simple"
+text = "The new language model reads this sentence clearly."
+
+[[prompts]]
+id = "en_numbers_001"
+language = "en"
+category = "numbers"
+text = "Please call room number 204 at 9:30 tomorrow morning."
+
+[[prompts]]
+id = "en_names_001"
+language = "en"
+category = "names"
+text = "Aisha and Rohit visited New Delhi after the conference."
+
+[[prompts]]
+id = "ar_simple_001"
+language = "ar"
+category = "simple"
+text = "هذا اختبار قصير لجودة تحويل النص إلى كلام."
+
+[[prompts]]
+id = "ar_numbers_001"
+language = "ar"
+category = "numbers"
+text = "سيصل القطار رقم ٢٤ في الساعة التاسعة والنصف صباحا."
+
+[[prompts]]
+id = "ar_names_001"
+language = "ar"
+category = "names"
+text = "زارت عائشة وروهيت مدينة نيودلهي بعد المؤتمر."
+
+[[prompts]]
+id = "hi_simple_001"
+language = "hi"
+category = "simple"
+text = "यह टेक्स्ट टू स्पीच गुणवत्ता का छोटा परीक्षण है।"
+
+[[prompts]]
+id = "hi_numbers_001"
+language = "hi"
+category = "numbers"
+text = "कृपया कल सुबह नौ बजकर तीस मिनट पर कमरा 204 में आइए।"
+
+[[prompts]]
+id = "hi_names_001"
+language = "hi"
+category = "names"
+text = "आयशा और रोहित सम्मेलन के बाद नई दिल्ली गए।"

@@ -1,0 +1,35 @@
+﻿[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bhasha"
+version = "0.1.0"
+description = "A reproducible multilingual TTS benchmark framework."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "Bhasha Contributors" }
+]
+dependencies = []
+
+[project.optional-dependencies]
+eval = [
+  "jiwer>=3.0.4",
+  "faster-whisper>=1.0.0",
+  "speechbrain>=1.0.0",
+  "torch>=2.2.0",
+  "torchaudio>=2.2.0"
+]
+tts = []
+dev = [
+  "pytest>=8.0.0"
+]
+
+[project.scripts]
+bhasha = "bhasha.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["bhasha*"]
+

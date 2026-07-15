@@ -1,0 +1,62 @@
+﻿# Bhasha
+
+Bhasha is a reproducible multilingual text-to-speech benchmark framework. The first target suite is an AI Engineer take-home evaluation for English, Arabic, and Hindi TTS pipelines, but the framework is designed so future models and languages can be added through adapters and config files.
+
+The project is assignment-first: it records real generated audio, measured metrics, hardware details, failures, and human-listening evidence. It must not fabricate MOS or any other metric.
+
+## Current Milestone
+
+Milestone 1 is a benchmark skeleton:
+
+- Suite configuration files.
+- CLI runner.
+- Dummy model adapter that generates a valid WAV tone.
+- Structured output directory.
+- `benchmark.csv`, `metadata.json`, `failures.json`, `audio_samples_index.md`, and `mos_ratings_template.csv`.
+
+The dummy adapter is not a TTS model. It exists only to verify the benchmark mechanics before installing heavy models.
+
+## Quick Start
+
+```bash
+python -m bhasha run --suite configs/suites/smoke_test.json
+```
+
+Outputs are written to:
+
+```text
+outputs/runs/<run_id>/
+```
+
+## Benchmark Rules
+
+1. Compare speed only within the same hardware profile.
+2. Use the same prompts, reference clips, and settings for all comparable models.
+3. Save every generated audio file.
+4. Record failed and skipped models honestly.
+5. Do not report MOS until real listeners have rated clips.
+6. Keep model versions, hardware, parameters, and commands in the report.
+
+## Assignment Metrics
+
+Bhasha is planned to evaluate:
+
+- MOS naturalness score from real listeners.
+- Speaker embedding cosine similarity for voice cloning.
+- Latency to first audio or full batch clip.
+- Real-Time Factor: generation time divided by audio duration.
+- Round-trip WER and CER using ASR.
+- Cross-language robustness across English, Arabic, and Hindi.
+
+## Compute Plan
+
+Development can happen locally. Heavy benchmark runs should happen on one fixed GPU environment. Results from different hardware profiles must be reported separately.
+
+## Next Milestones
+
+1. Add the first real local TTS adapter.
+2. Add audio duration and stronger latency instrumentation.
+3. Add ASR WER/CER evaluation.
+4. Add speaker similarity for cloning-capable models.
+5. Add the English, Arabic, and Hindi take-home suite with real model candidates.
+

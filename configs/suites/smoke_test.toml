@@ -1,0 +1,33 @@
+suite_id = "smoke_test"
+name = "Bhasha smoke test"
+description = "Small local suite that validates runner, artifacts, and metrics plumbing without real TTS models."
+output_root = "outputs/runs"
+repeat_count = 1
+
+[[languages]]
+id = "en"
+name = "English"
+script = "Latin"
+asr_language = "en"
+
+[[models]]
+id = "dummy_tone"
+name = "Dummy Tone Adapter"
+adapter = "dummy"
+enabled = true
+supports_voice_cloning = false
+license = "MIT"
+source = "local"
+languages = ["en"]
+
+[[prompts]]
+id = "en_smoke_001"
+language = "en"
+category = "simple"
+text = "This is a benchmark smoke test."
+
+[[prompts]]
+id = "en_smoke_002"
+language = "en"
+category = "numbers"
+text = "The model generated two short audio clips today."
