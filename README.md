@@ -81,3 +81,30 @@ $env:PATH = (Resolve-Path '.venv\Scripts').Path + ';' + $env:PATH
 ```
 
 The current Piper adapter invokes the `piper` CLI per sample, so measured latency includes process/model startup. Later benchmark stages should separate cold-start timing from warm generation timing.
+
+## ASR Round-Trip Evaluation
+
+Bhasha computes intelligibility by transcribing generated audio and comparing the ASR transcript to the original input text.
+
+Install the optional ASR dependency:
+
+```bash
+.venv\Scripts\python -m pip install -r requirements/asr.txt
+```
+
+Evaluate an existing run:
+
+```bash
+.venv\Scripts\python -m bhasha eval-asr --run-dir outputs\runs\<run_id> --model-size tiny --device cpu --compute-type int8
+```
+
+This updates `benchmark.csv` with:
+
+- `asr_model`
+- `asr_transcript`
+- `wer`
+- `cer`
+
+It also writes `transcripts.json` with normalized text and transcript details. For final results, use the same ASR model and hardware policy across comparable runs.
+
+WER note: numbers and punctuation can affect word-level scoring. Bhasha also reports CER so cases like `9:30` versus `930` are easier to interpret.
