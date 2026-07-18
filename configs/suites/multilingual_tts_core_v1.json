@@ -1,13 +1,28 @@
-﻿{
+{
   "suite_id": "multilingual_tts_core_v1",
   "name": "Multilingual TTS core suite v1",
   "description": "Core multilingual TTS benchmark suite for English, Arabic, and Hindi.",
   "output_root": "outputs/runs",
   "repeat_count": 1,
   "languages": [
-    { "id": "en", "name": "English", "script": "Latin", "asr_language": "en" },
-    { "id": "ar", "name": "Arabic", "script": "Arabic", "asr_language": "ar" },
-    { "id": "hi", "name": "Hindi", "script": "Devanagari", "asr_language": "hi" }
+    {
+      "id": "en",
+      "name": "English",
+      "script": "Latin",
+      "asr_language": "en"
+    },
+    {
+      "id": "ar",
+      "name": "Arabic",
+      "script": "Arabic",
+      "asr_language": "ar"
+    },
+    {
+      "id": "hi",
+      "name": "Hindi",
+      "script": "Devanagari",
+      "asr_language": "hi"
+    }
   ],
   "models": [
     {
@@ -18,11 +33,19 @@
       "supports_voice_cloning": true,
       "license": "Open model license; verify exact terms before final report",
       "source": "https://huggingface.co/coqui/XTTS-v2",
-      "languages": ["en", "ar", "hi"],
+      "languages": [
+        "en",
+        "ar",
+        "hi"
+      ],
       "parameters": {
         "model_name": "tts_models/multilingual/multi-dataset/xtts_v2",
         "device": "cuda",
-        "language_map": { "en": "en", "ar": "ar", "hi": "hi" },
+        "language_map": {
+          "en": "en",
+          "ar": "ar",
+          "hi": "hi"
+        },
         "reference_audio_by_language": {
           "en": "data/references/en/reference.wav",
           "ar": "data/references/ar/reference.wav",
@@ -38,7 +61,9 @@
       "supports_voice_cloning": true,
       "license": "Open-source; verify exact model license before final report",
       "source": "https://github.com/resemble-ai/chatterbox",
-      "languages": ["en"],
+      "languages": [
+        "en"
+      ],
       "parameters": {
         "device": "cuda",
         "reference_audio": "data/references/en/reference.wav"
@@ -52,7 +77,11 @@
       "supports_voice_cloning": true,
       "license": "Open-source; verify exact model license before final report",
       "source": "https://github.com/fishaudio/fish-speech",
-      "languages": ["en", "ar", "hi"],
+      "languages": [
+        "en",
+        "ar",
+        "hi"
+      ],
       "parameters": {
         "command_template": [],
         "reference_audio_by_language": {
@@ -70,7 +99,9 @@
       "supports_voice_cloning": true,
       "license": "Open-source; verify exact model license before final report",
       "source": "https://github.com/FunAudioLLM/CosyVoice",
-      "languages": ["en"],
+      "languages": [
+        "en"
+      ],
       "parameters": {
         "command_template": [],
         "reference_audio": "data/references/en/reference.wav"
@@ -84,11 +115,18 @@
       "supports_voice_cloning": false,
       "license": "Open-source; verify exact model license before final report",
       "source": "https://huggingface.co/ai4bharat",
-      "languages": ["hi"],
+      "languages": [
+        "en",
+        "hi"
+      ],
       "parameters": {
         "model_name": "ai4bharat/indic-parler-tts",
         "device": "cuda",
-        "description": "A clear, natural Hindi speaker voice recorded in a quiet studio."
+        "description": "Rohit's voice is clear and natural, with a moderate speed and pitch. The recording is very high quality, with the speaker's voice sounding clear and close up.",
+        "description_by_language": {
+          "en": "Thoma speaks in a clear Indian English accent with a moderate speed and pitch. The recording is very high quality, with the speaker's voice sounding clear and close up.",
+          "hi": "Rohit's voice is clear and natural, with a moderate speed and pitch. The recording is very high quality, with the speaker's voice sounding clear and close up."
+        }
       }
     },
     {
@@ -99,7 +137,10 @@
       "supports_voice_cloning": false,
       "license": "Open-source; verify exact model license before final report",
       "source": "https://huggingface.co/facebook/mms-tts",
-      "languages": ["ar", "hi"],
+      "languages": [
+        "ar",
+        "hi"
+      ],
       "parameters": {
         "device": "cuda",
         "model_by_language": {
@@ -110,15 +151,59 @@
     }
   ],
   "prompts": [
-    { "id": "en_simple_001", "language": "en", "category": "simple", "text": "The new language model reads this sentence clearly." },
-    { "id": "en_numbers_001", "language": "en", "category": "numbers", "text": "Please call room number 204 at 9:30 tomorrow morning." },
-    { "id": "en_names_001", "language": "en", "category": "names", "text": "Aisha and Rohit visited New Delhi after the conference." },
-    { "id": "ar_simple_001", "language": "ar", "category": "simple", "text": "هذا اختبار قصير لجودة تحويل النص إلى كلام." },
-    { "id": "ar_numbers_001", "language": "ar", "category": "numbers", "text": "سيصل القطار رقم ٢٤ في الساعة التاسعة والنصف صباحا." },
-    { "id": "ar_names_001", "language": "ar", "category": "names", "text": "زارت عائشة وروهيت مدينة نيودلهي بعد المؤتمر." },
-    { "id": "hi_simple_001", "language": "hi", "category": "simple", "text": "यह टेक्स्ट टू स्पीच गुणवत्ता का छोटा परीक्षण है।" },
-    { "id": "hi_numbers_001", "language": "hi", "category": "numbers", "text": "कृपया कल सुबह नौ बजकर तीस मिनट पर कमरा 204 में आइए।" },
-    { "id": "hi_names_001", "language": "hi", "category": "names", "text": "आयशा और रोहित सम्मेलन के बाद नई दिल्ली गए।" }
+    {
+      "id": "en_simple_001",
+      "language": "en",
+      "category": "simple",
+      "text": "The new language model reads this sentence clearly."
+    },
+    {
+      "id": "en_numbers_001",
+      "language": "en",
+      "category": "numbers",
+      "text": "Please call room number 204 at 9:30 tomorrow morning."
+    },
+    {
+      "id": "en_names_001",
+      "language": "en",
+      "category": "names",
+      "text": "Aisha and Rohit visited New Delhi after the conference."
+    },
+    {
+      "id": "ar_simple_001",
+      "language": "ar",
+      "category": "simple",
+      "text": "هذا اختبار قصير لجودة تحويل النص إلى كلام."
+    },
+    {
+      "id": "ar_numbers_001",
+      "language": "ar",
+      "category": "numbers",
+      "text": "سيصل القطار رقم ٢٤ في الساعة التاسعة والنصف صباحا."
+    },
+    {
+      "id": "ar_names_001",
+      "language": "ar",
+      "category": "names",
+      "text": "زارت عائشة وروهيت مدينة نيودلهي بعد المؤتمر."
+    },
+    {
+      "id": "hi_simple_001",
+      "language": "hi",
+      "category": "simple",
+      "text": "यह टेक्स्ट टू स्पीच गुणवत्ता का छोटा परीक्षण है।"
+    },
+    {
+      "id": "hi_numbers_001",
+      "language": "hi",
+      "category": "numbers",
+      "text": "कृपया कल सुबह नौ बजकर तीस मिनट पर कमरा 204 में आइए।"
+    },
+    {
+      "id": "hi_names_001",
+      "language": "hi",
+      "category": "names",
+      "text": "आयशा और रोहित सम्मेलन के बाद नई दिल्ली गए।"
+    }
   ]
 }
-
