@@ -2,7 +2,7 @@
 
 from bhasha.schema import GenerationRequest, GenerationResult
 
-from ._shared import dependency_error, timed_generation
+from ._shared import dependency_error, hf_token, timed_generation
 from .base import TTSAdapter
 
 
@@ -23,22 +23,16 @@ class IndicParlerAdapter(TTSAdapter):
 
         model_name = str(request.model.parameters.get("model_name", "ai4bharat/indic-parler-tts"))
         device = str(request.model.parameters.get("device", "cuda"))
-        description_by_language = request.model.parameters.get("description_by_language", {})
-        if isinstance(description_by_language, dict) and request.language.id in description_by_language:
-            description = str(description_by_language[request.language.id])
-        else:
-            description = str(
-                request.model.parameters.get(
-                    "description",
-                    "Rohit's voice is clear and natural, with a moderate speed and pitch. "
-                    "The recording is very high quality, with the speaker's voice sounding clear and close up.",
-                )
-            )
+        try:
+            token = hf_token(request, required=True)
+        except RuntimeError as exc:
+            return dependency_error(str(exc))
+        description = _description_for_request(request)
 
         def _generate() -> None:
-            model = ParlerTTSForConditionalGeneration.from_pretrained(model_name).to(device)
-            prompt_tokenizer = AutoTokenizer.from_pretrained(model_name)
-            description_tokenizer = AutoTokenizer.from_pretrained(model.config.text_encoder._name_or_path)
+            model = ParlerTTSForConditionalGeneration.from_pretrained(model_name, token=token).to(device)
+            prompt_tokenizer = AutoTokenizer.from_pretrained(model_name, token=token)
+            description_tokenizer = AutoTokenizer.from_pretrained(model.config.text_encoder._name_or_path, token=token)
 
             description_inputs = description_tokenizer(description, return_tensors="pt").to(device)
             prompt_inputs = prompt_tokenizer(request.prompt.text, return_tensors="pt").to(device)
@@ -56,4 +50,18 @@ class IndicParlerAdapter(TTSAdapter):
             sf.write(str(request.output_audio), audio, sample_rate)
 
         return timed_generation(request, _generate)
+
+
+def _description_for_request(request: GenerationRequest) -> str:
+    description_by_language = request.model.parameters.get("description_by_language", {})
+    if isinstance(description_by_language, dict) and request.language.id in description_by_language:
+        return str(description_by_language[request.language.id])
+    return str(
+        request.model.parameters.get(
+            "description",
+            "Rohit's voice is clear and natural, with a moderate speed and pitch. "
+            "The recording is very high quality, with the speaker's voice sounding clear and close up.",
+        )
+    )
+
 

@@ -68,6 +68,19 @@ def timed_generation(request: GenerationRequest, generate_fn: Callable[[], None]
     )
 
 
+def hf_token(request: GenerationRequest, *, required: bool = False) -> str | None:
+    import os
+
+    raw = request.model.parameters.get("hf_token") or request.model.parameters.get("token")
+    token = str(raw).strip() if raw else os.environ.get("HF_TOKEN") or os.environ.get("HUGGINGFACE_HUB_TOKEN")
+    token = token.strip() if token else None
+    if required and not token:
+        raise RuntimeError(
+            "This Hugging Face model requires access. Set HF_TOKEN or HUGGINGFACE_HUB_TOKEN, "
+            "or add hf_token to the model parameters."
+        )
+    return token
+
 def language_code(request: GenerationRequest) -> str:
     mapping = request.model.parameters.get("language_map", {})
     if isinstance(mapping, dict) and request.language.id in mapping:
@@ -108,3 +121,5 @@ def write_mono_wav_from_float(path: str | Path, waveform, sample_rate: int) -> N
         wav.setsampwidth(2)
         wav.setframerate(sample_rate)
         wav.writeframes(float_waveform_to_int16(waveform))
+
+

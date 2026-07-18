@@ -4,6 +4,17 @@ __pycache__/
 .venv/
 .env
 .pytest_cache/
+# Local benchmark/submission artifacts
+outputs/*
+!outputs/runs/
+outputs/runs/*
+submission/
+output_backup_zip_kaggle/
+docs/kaggle_chatterbox_recovery_cells.md
+docs/kaggle_indic_parler_copy_paste_cells.md
+docs/kaggle_indic_parler_venv_cells.md
+docs/kaggle_mms_tts_cells.md
+docs/kaggle_mms_venv_cells.md
 
 models/piper/*.onnx
 models/piper/*.onnx.json
@@ -13,4 +24,5 @@ models/speaker/
 
 
 Screenshot *.png
+
 

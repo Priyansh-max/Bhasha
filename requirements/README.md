@@ -1,11 +1,15 @@
-﻿# Requirements
+# Requirements
 
-These files pin small, task-specific dependency sets instead of forcing every benchmark backend into one environment.
+Install one model stack at a time. Do not install every heavy TTS backend into one environment unless you are prepared to resolve Torch, Transformers, protobuf, and audio-library conflicts.
 
-- `piper.txt`: CPU-friendly Piper baseline used for the first real TTS smoke run.
+Recommended environments:
 
-Heavy model stacks such as XTTS, Fish Speech, CosyVoice, Whisper, and speaker-embedding models should get separate requirement files or environment notes so dependency conflicts stay visible.
+- `xtts.txt`: XTTS-v2 cloning baseline.
+- `indic_parler.txt`: Indic Parler-TTS. Requires Hugging Face access and `HF_TOKEN` for `ai4bharat/indic-parler-tts`.
+- `hf_tts.txt`: MMS-TTS via Hugging Face TextToWaveform.
+- `chatterbox.txt`: Chatterbox English candidate; prefer Python 3.11 if possible.
+- `asr.txt`: faster-whisper ASR for WER/CER.
+- `speaker.txt`: SpeechBrain speaker embeddings for cloning similarity.
+- `piper.txt`: lightweight local CPU baseline.
 
-- `asr.txt`: optional faster-whisper backend for round-trip WER/CER evaluation.
-
-- `speaker.txt`: optional SpeechBrain speaker embedding backend for voice-cloning cosine similarity.
+External repository models such as Fish Speech and CosyVoice2 should be installed in their own environments and wired through `command_template` in the suite.

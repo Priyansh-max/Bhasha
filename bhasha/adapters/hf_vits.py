@@ -2,7 +2,7 @@
 
 from bhasha.schema import GenerationRequest, GenerationResult
 
-from ._shared import dependency_error, timed_generation
+from ._shared import dependency_error, hf_token, timed_generation
 from .base import TTSAdapter
 
 
@@ -26,10 +26,11 @@ class HuggingFaceVitsAdapter(TTSAdapter):
             model_name = str(model_by_language.get(request.language.id, model_name))
         device = str(request.model.parameters.get("device", "cuda"))
         seed = int(request.model.parameters.get("seed", 555))
+        token = hf_token(request)
 
         def _generate() -> None:
-            tokenizer = AutoTokenizer.from_pretrained(model_name)
-            model = AutoModelForTextToWaveform.from_pretrained(model_name).to(device)
+            tokenizer = AutoTokenizer.from_pretrained(model_name, token=token)
+            model = AutoModelForTextToWaveform.from_pretrained(model_name, token=token).to(device)
             inputs = tokenizer(text=request.prompt.text, return_tensors="pt").to(device)
             set_seed(seed)
             with torch.no_grad():

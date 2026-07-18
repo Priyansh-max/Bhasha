@@ -6,11 +6,28 @@ from ._shared import dependency_error, reference_audio_path, timed_generation
 from .base import TTSAdapter
 
 
+def _patch_legacy_import_api() -> None:
+    import importlib.machinery
+    import pkgutil
+
+    if not hasattr(importlib.machinery.FileFinder, "find_module"):
+        def _find_module(self, fullname, path=None):
+            spec = self.find_spec(fullname)
+            return None if spec is None else spec.loader
+
+        importlib.machinery.FileFinder.find_module = _find_module
+    if not hasattr(pkgutil, "ImpImporter"):
+        pkgutil.ImpImporter = importlib.machinery.FileFinder
+    if not hasattr(pkgutil, "ImpLoader"):
+        pkgutil.ImpLoader = importlib.machinery.SourceFileLoader
+
+
 class ChatterboxAdapter(TTSAdapter):
     adapter_id = "chatterbox"
 
     def generate(self, request: GenerationRequest) -> GenerationResult:
         try:
+            _patch_legacy_import_api()
             import torchaudio
             from chatterbox.tts import ChatterboxTTS
         except ModuleNotFoundError:
