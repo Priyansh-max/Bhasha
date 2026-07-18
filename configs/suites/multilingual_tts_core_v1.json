@@ -138,6 +138,7 @@
       "license": "Open-source; verify exact model license before final report",
       "source": "https://huggingface.co/facebook/mms-tts",
       "languages": [
+        "en",
         "ar",
         "hi"
       ],
@@ -145,7 +146,8 @@
         "device": "cuda",
         "model_by_language": {
           "ar": "facebook/mms-tts-ara",
-          "hi": "facebook/mms-tts-hin"
+          "hi": "facebook/mms-tts-hin",
+          "en": "facebook/mms-tts-eng"
         }
       }
     }
