@@ -1,4 +1,5 @@
-﻿torch
+torch
 torchaudio
 transformers
-parler-tts
+soundfile
+git+https://github.com/huggingface/parler-tts.git
