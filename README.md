@@ -118,6 +118,67 @@ Generate a report:
 .venv\Scripts\python -m bhasha generate-report --run-dir outputs\runs\<run_id>
 ```
 
+## Reference Clips For Cloning Models
+
+Voice-cloning models need a short reference recording of the speaker to imitate. Bhasha does not ship reference clips; use your own voice or an openly licensed clip where cloning is allowed.
+
+Recommended clip rules:
+
+- Use 20-30 seconds of clean speech per language.
+- Use mono WAV if possible.
+- Avoid background music, room echo, multiple speakers, and long silence.
+- Put the files at the paths expected by the default suite:
+
+```text
+data/references/en/reference.wav
+data/references/ar/reference.wav
+data/references/hi/reference.wav
+```
+
+If your clip is `.m4a`, convert it with FFmpeg:
+
+```bash
+ffmpeg -y -i "reference - english.m4a" -ac 1 -ar 24000 data/references/en/reference.wav
+ffmpeg -y -i "reference - arabic.m4a" -ac 1 -ar 24000 data/references/ar/reference.wav
+ffmpeg -y -i "reference - hindi.m4a" -ac 1 -ar 24000 data/references/hi/reference.wav
+```
+
+XTTS-v2 and Chatterbox use these reference clips for voice cloning. Indic Parler-TTS and MMS-TTS do not clone the reference speaker, so speaker similarity is reported as `not_applicable` for those models.
+
+## Running Heavy Adapters
+
+Install heavy model stacks one at a time in a fresh environment. Open-source TTS packages often have conflicting Torch, Transformers, protobuf, and audio-library requirements.
+
+XTTS-v2:
+
+```bash
+pip install -r requirements/xtts.txt
+python -m bhasha run --suite configs/suites/multilingual_tts_core_v1.json --model xtts_v2 --language en --include-disabled
+```
+
+Indic Parler-TTS is gated on Hugging Face. Request access to `ai4bharat/indic-parler-tts`, create a Hugging Face token, then set it before running:
+
+```bash
+export HF_TOKEN=hf_...
+pip install -r requirements/indic_parler.txt
+python -m bhasha run --suite configs/suites/multilingual_tts_core_v1.json --model indic_parler_tts --language hi --include-disabled
+```
+
+On Windows PowerShell:
+
+```powershell
+$env:HF_TOKEN = "hf_..."
+```
+
+MMS-TTS:
+
+```bash
+pip install -r requirements/hf_tts.txt
+python -m bhasha run --suite configs/suites/multilingual_tts_core_v1.json --model mms_tts --language ar --include-disabled
+```
+
+For more adapter-specific notes, see `docs/model_adapters.md`.
+
 ## Benchmark A Suite
 
 Inspect a suite:
@@ -249,3 +310,4 @@ These examples show artifact shape and failure handling. They are not a global l
 Bhasha is source-available for non-commercial use under the PolyForm Noncommercial License 1.0.0.
 
 Commercial use is not permitted without separate permission. See [LICENSE](LICENSE) for details.
+
